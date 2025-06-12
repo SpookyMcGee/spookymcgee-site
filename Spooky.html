@@ -10,16 +10,22 @@
     p.tight {
   margin-bottom: 1rem;
   line-height: 1.6;
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
 }
-    body {
-      background-color: black;
-      color: #00ffee;
-      font-family: 'VT323', monospace;
-      padding: 2rem;
-      font-size: 1.4rem;
-      position: relative;
-      overflow: hidden;
-    }
+
+body {
+  background-color: black;
+  color: #00ffee;
+  font-family: 'VT323', monospace;
+  padding: 2rem;
+  font-size: 1.4rem;
+  line-height: 1.6;
+}
+
 
     /* ✨ Background Glitch Effect */
     body::before {
