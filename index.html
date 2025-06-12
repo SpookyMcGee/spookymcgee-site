@@ -67,25 +67,26 @@
 
   <script>
     const progressBar = document.getElementById("progress");
-    const stages = [
-      "[█▒▒▒▒▒▒▒]",
-      "[██▒▒▒▒▒▒]",
-      "[████▒▒▒▒]",
-      "[██████▒▒]",
-      "[████████]"
-    ];
+const stages = [
+  "[█▒▒▒▒▒▒▒]",
+  "[██▒▒▒▒▒▒]",
+  "[████▒▒▒▒]",
+  "[██████▒▒]",
+  "[████████]"
+];
 
-    let stage = 0;
+let stage = 0;
 
-    const interval = setInterval(() => {
-      if (stage < stages.length) {
-        progressBar.textContent = stages[stage];
-        stage++;
-      } else {
-        clearInterval(interval);
-        window.location.href = "terminal.html"; // redirect after full load
-      }
-    }, 600); // total 5 stages × 600ms = 3s
+const interval = setInterval(() => {
+  progressBar.textContent = stages[stage];
+  stage++;
+
+  if (stage === stages.length) {
+    clearInterval(interval);
+    // As soon as we hit [████████], go straight to terminal
+    window.location.href = "terminal.html";
+  }
+}, 350); // Adjust speed here (e.g., 350ms x 5 = 1.75s total)
   </script>
 
 </body>
