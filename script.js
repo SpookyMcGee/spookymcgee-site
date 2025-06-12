@@ -70,8 +70,10 @@ function typeLine() {
   } else {
     terminal.innerHTML = buffer;
     document.getElementById('link-hack').style.display = 'block';
+    const linkHack = document.getElementById('link-hack');
+if (linkHack) linkHack.style.display = 'block';
 
-    // ✅ Trigger glitch + hat AFTER typing is complete
+   /* // ✅ Trigger glitch + hat AFTER typing is complete
     setTimeout(() => {
       const original = terminal.innerHTML;
       terminal.innerHTML = '<pre class="glow">█▒▓▒▓▒█▒▓▒▓▒█▒▓▒▓▒█▒▓▒▓▒█</pre>';
@@ -86,5 +88,5 @@ function typeLine() {
     }, 20000);
   }
 }
-
+*/
 typeLine();
