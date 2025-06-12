@@ -22,15 +22,28 @@
       line-height: 1.6;
       text-shadow: 0 0 5px #00ffee, 0 0 10px #00ffee;
     }
+    @keyframes floatGlitch {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-4px) rotateX(1deg); }
+  100% { transform: translateY(-2px) rotateX(-1deg); }
+}
+
 
     .spooky-title {
-      font-size: 2rem;
-      color: #00ffee;
-      text-shadow: 0 0 10px #00ffee, 0 0 20px #22ffff;
-      animation: flicker 2s infinite alternate;
-      text-align: center;
-      margin-bottom: 2rem;
-    }
+  font-size: 2rem;
+  color: #00ffee;
+  text-shadow:
+    0 0 10px #00ffee,
+    0 0 20px #22ffff,
+    0 0 40px #00ffee;
+  animation: floatGlitch 2.5s ease-in-out infinite alternate,
+             flicker 1.8s infinite alternate;
+  text-align: center;
+  margin-bottom: 2.5rem;
+  letter-spacing: 0.1rem;
+  transform: translateZ(0);
+}
+
 
     p {
       margin-bottom: 1.5rem;
