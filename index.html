@@ -2,28 +2,91 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Spooky McGee Terminal</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hatter OS Boot</title>
+  <style>
+    body {
+      background: black;
+      color: #00ffee;
+      font-family: 'VT323', monospace;
+      font-size: 1.1rem;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .glow {
+      text-shadow: 0 0 5px #00ffee, 0 0 10px #22ffff;
+    }
+
+    .ascii {
+      white-space: pre;
+      font-size: 0.8rem;
+      margin-bottom: 1.5rem;
+    }
+
+    #progress {
+      font-size: 1.2rem;
+      margin-top: 1rem;
+      letter-spacing: 0.1rem;
+    }
+
+    @keyframes flicker {
+      0% { opacity: 1; }
+      100% { opacity: 0.8; }
+    }
+  </style>
 </head>
-<body><div id="terminal" class="glow"></div>
+<body class="glow">
 
+  <div class="ascii">
+<pre>
+⠀⠀⠀⠀⠀⠀⠀⠀                ⠀⠀⠀⠀⠀⠀⠀⠀⠀
+             ⣀⣀⣠⣤⣤⣤⣤⣤⣤⣴⢶⣲⣖⣦⢶⣖⣦⣦⣤⣤⣤⣤⣀⣀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠠⣶⣿⣿⣿⡿⣟⣯⣿⢯⣿⡽⣯⡿⣯⡷⣿⣽⣻⣾⣳⣯⣟⣷⣻⢾⣽⣻⢿⣽⣻⣷⡄⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⢿⣿⣿⣷⣿⣿⣯⣿⣻⣽⣿⣻⣽⢷⣿⣻⢾⡷⣯⣷⣟⣾⣷⣻⣿⣾⣽⣿⣾⣿⣿⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡏⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠁⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠘⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠇⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⢹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⣀⣤⣤⣶⣶⡿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢿⣶⣶⣤⣄⣀⠀⠀⠀⠀
+⠀⣠⣴⣿⣿⣿⣿⣿⣿⡇⠈⠙⠻⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠿⠛⠁⢸⣿⣿⣿⣿⣿⣿⣦⡄⠀
+⢠⣿⣿⣿⣿⣿⣿⣿⣿⣇⠀⠀⠀⠀⠀⠀⠉⠉⠉⠉⠙⠋⠛⠋⠋⠉⠉⠉⠉⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⣿⡆
+⠈⢿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣴⣿⣿⣿⣿⢿⣟⣿⣿⣿⠁
+⠀⠀⠙⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣦⣤⣄⣀⣀⣀⠀⠀⠀⠀⣀⣀⣀⣠⣤⣴⣶⣿⣿⣿⣿⣿⡿⣽⣿⣻⣯⠟⠁⠀
+⠀⠀⠀⠀⠉⠛⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣯⢿⣽⠾⠋⠁⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠉⠛⠻⠿⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠟⠛⠉⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠉⠙⠛⠛⠛⠛⠻⠻⠟⠛⠛⠛⠛⠛⠋⠉⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+</pre>
+  </div>
 
-  <script src="script.js"></script>
-<div id="link-hack" style="display:none;">
-  <p>
-    <a href="star.html" class="term-link">> star.html</a>
-    <a href="nona.html" class="term-link">> nona.html</a>
-  </p>
-</div>
-</div>
-<div id="link-hack" style="display:none;">
-  <p>
-    <a href="star.html" class="term-link">> star.html</a> |
-    <a href="nona.html" class="term-link">> nona.html</a> |
-    <a href="spooky.html" class="term-link">> spooky.html</a>
-  </p>
-</div>
+  <div>Hatter OS v0.9a - Initializing echo modules...</div>
+  <div id="progress">[▒▒▒▒▒▒▒▒]</div>
+
+  <script>
+    const progressBar = document.getElementById("progress");
+    const stages = [
+      "[█▒▒▒▒▒▒▒]",
+      "[██▒▒▒▒▒▒]",
+      "[████▒▒▒▒]",
+      "[██████▒▒]",
+      "[████████]"
+    ];
+
+    let stage = 0;
+
+    const interval = setInterval(() => {
+      if (stage < stages.length) {
+        progressBar.textContent = stages[stage];
+        stage++;
+      } else {
+        clearInterval(interval);
+        window.location.href = "index.html"; // redirect after full load
+      }
+    }, 600); // total 5 stages × 600ms = 3s
+  </script>
+
 </body>
 </html>
