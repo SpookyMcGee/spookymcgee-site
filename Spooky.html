@@ -13,13 +13,49 @@
       font-family: 'VT323', monospace;
       padding: 2rem;
       font-size: 1.4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* ✨ Background Glitch Effect */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: repeating-linear-gradient(
+        0deg,
+        rgba(255, 255, 255, 0.01),
+        rgba(255, 255, 255, 0.01) 1px,
+        transparent 2px,
+        transparent 4px
+      );
+      pointer-events: none;
+      animation: glitchbg 2s infinite linear;
+      z-index: 0;
+    }
+
+    @keyframes glitchbg {
+      0% { transform: translate(0, 0); }
+      25% { transform: translate(1px, -1px); }
+      50% { transform: translate(-1px, 1px); }
+      75% { transform: translate(1px, 1px); }
+      100% { transform: translate(0, 0); }
+    }
+
+    /* ✂️ Glowing Stitched Box */
+    .spooky-box {
+      position: relative;
+      padding: 2rem;
+      border: 2px dashed #00ffee;
+      box-shadow: 0 0 10px #00ffee, 0 0 25px #22ffff;
+      z-index: 1;
     }
 
     .spooky-title {
       font-size: 2rem;
       color: #00ffee;
       text-shadow: 0 0 10px #00ffee, 0 0 20px #22ffff;
-      animation: flicker 2s infinite alternate;
+      animation: flicker 2s infinite alternate, topHatPulse 3s infinite ease-in-out;
     }
 
     .spooky-glitch {
@@ -58,44 +94,53 @@
       66% { transform: translateX(2px); }
       100% { transform: translate(0); }
     }
-#reroll-btn {
-  background: transparent;
-  border: none;
-  color: #00ffee;
-  font-family: 'VT323', monospace;
-  font-size: 1.2rem;
-  cursor: pointer;
-  text-shadow: 0 0 5px #00ffee;
-  padding: 0;
-  margin-top: 1.5rem;
-}
 
-#reroll-btn:hover {
-  text-shadow: 0 0 10px #00ffee, 0 0 25px #00ffff;
-}
+    @keyframes topHatPulse {
+      0%, 100% { transform: rotate(0deg) scale(1); }
+      25% { transform: rotate(-2deg) scale(1.05); }
+      50% { transform: rotate(2deg) scale(1.1); }
+      75% { transform: rotate(-1deg) scale(1.05); }
+    }
 
-#reroll-btn:active {
-  transform: scale(0.97) translateY(1px);
-  filter: brightness(1.2);
-}
+    #reroll-btn {
+      background: transparent;
+      border: none;
+      color: #00ffee;
+      font-family: 'VT323', monospace;
+      font-size: 1.2rem;
+      cursor: pointer;
+      text-shadow: 0 0 5px #00ffee;
+      padding: 0;
+      margin-top: 1.5rem;
+    }
+
+    #reroll-btn:hover {
+      text-shadow: 0 0 10px #00ffee, 0 0 25px #00ffff;
+    }
+
+    #reroll-btn:active {
+      transform: scale(0.97) translateY(1px);
+      filter: brightness(1.2);
+    }
   </style>
 </head>
 <body>
-  <div>
+  <div class="spooky-box">
     <h1 class="spooky-title">🎩 SPOOKY MCGEE 🎩</h1>
-    <p>
-      Former mercenary. Full-time stitched enigma.  
-      Once pulled his own heart out. Nona stitched it back in. Now he laughs more.
-    </p>
 
     <p>
-      Spooky talks to ghosts. He bargains with echoes.  
-      He never lies — he just... rearranges reality.
+      Stitched from war. Rewritten by love.
     </p>
-
     <p>
-      He wears a top hat not because he’s fancy,  
-      but because it holds the last thread he hasn’t used yet.
+      Spooky McGee was once a lifeless ragdoll made for battle — until heartbreak tore him open.  
+      He pulled out his own heart. Nona stitched it back in. The pain never left, but neither did he.
+    </p>
+    <p>
+      A soldier, a wanderer, a father.  
+      He walks the dreamlike cracks of reality, talking in riddles and smiling like he remembers everything you forgot.
+    </p>
+    <p>
+      He's the thread between worlds. And he’s watching.
     </p>
 
     <button id="reroll-btn" class="glow-link">> Reroll reality</button>
@@ -106,18 +151,17 @@
 
   <script>
     const quotes = [
-      "“In another story, I already walked you through this part.”",
-      "“There was a version of you that didn’t survive. This one’s better.”",
-      "“Time doesn’t go forward. It loops around my boots.”",
-      "“You're not glitched. You’re just aware.”",
-      "“What if the thread was supposed to break here?”",
-      "“Shhh. The shadows are listening.”"
+      "“You ever love so deep you had to sew it back in?”",
+      "“Reality isn’t broken — it’s just quilted wrong.”",
+      "“They called me a puppet. I made my own strings.”",
+      "“I’m not lost. I’m unraveled.”",
+      "“Hope is a thread. I keep weaving.”",
+      "“My smile was stitched by ghosts.”"
     ];
 
     const quoteElement = document.getElementById('spooky-quote');
     const button = document.getElementById('reroll-btn');
 
-    // Load a random quote on page load
     quoteElement.textContent = quotes[Math.floor(Math.random() * quotes.length)];
 
     button.addEventListener('click', () => {
