@@ -43,8 +43,65 @@
   letter-spacing: 0.1rem;
   transform: translateZ(0);
 }
+   /* ✂️ Glowing Stitched Box */
+    .spooky-box {
+      position: relative;
+      padding: 2rem;
+      border: 2px dashed #00ffee;
+      box-shadow: 0 0 10px #00ffee, 0 0 25px #22ffff;
+      z-index: 1;
+    }
 
+    .spooky-title {
+      font-size: 2rem;
+      color: #00ffee;
+      text-shadow: 0 0 10px #00ffee, 0 0 20px #22ffff;
+      animation: flicker 2s infinite alternate, topHatPulse 3s infinite ease-in-out;
+    }
 
+    .spooky-glitch {
+      font-family: 'Special+Elite', monospace;
+      color: #ff0066;
+      text-shadow: 0 0 4px #ff0066, 0 0 8px #ff3399;
+      animation: glitch 3s infinite;
+      display: inline-block;
+    }
+
+    .glow-link {
+      display: inline-block;
+      margin-top: 2rem;
+      color: #00ffee;
+      text-decoration: none;
+      text-shadow: 0 0 5px #00ffee;
+    }
+
+    .glow-link:hover {
+      text-shadow: 0 0 10px #00ffee, 0 0 25px #00ffff;
+    }
+
+    .glow-link:active {
+      transform: scale(0.97) translateY(1px);
+      filter: brightness(1.2);
+    }
+
+    @keyframes flicker {
+      0% { opacity: 1; }
+      100% { opacity: 0.95; transform: translateY(-0.5px); }
+    }
+
+    @keyframes glitch {
+      0% { transform: translate(0); }
+      33% { transform: translateX(-1px); }
+      66% { transform: translateX(2px); }
+      100% { transform: translate(0); }
+    }
+
+    @keyframes topHatPulse {
+      0%, 100% { transform: rotate(0deg) scale(1); }
+      25% { transform: rotate(-2deg) scale(1.05); }
+      50% { transform: rotate(2deg) scale(1.1); }
+      75% { transform: rotate(-1deg) scale(1.05); }
+    }
     p {
       margin-bottom: 1.5rem;
     }
