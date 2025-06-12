@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nona McGee</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=VT323&family=Dancing+Script&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: black;
+      color: #e0ffe0;
+      font-family: 'VT323', monospace;
+      padding: 2rem;
+      font-size: 1.4rem;
+    }
+
+    .nona-title {
+      color: #ffb7d5;
+      text-shadow: 0 0 10px #ff9fd6, 0 0 20px #ff66aa;
+      font-size: 2rem;
+      animation: soft-glow 3s ease-in-out infinite alternate;
+    }
+
+    .nona-note {
+      color: #ff9fd6;
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.6rem;
+      text-shadow: 0 0 5px #ff9fd6, 0 0 15px #ff66aa;
+      display: block;
+      margin: 1.5rem 0;
+    }
+
+    .glow-link {
+      display: inline-block;
+      margin-top: 2rem;
+      color: #ff8cf0;
+      text-decoration: none;
+      text-shadow: 0 0 5px #ff8cf0;
+    }
+
+    .glow-link:hover {
+      text-shadow: 0 0 10px #ff8cf0, 0 0 25px #ff66cc;
+    }
+
+    @keyframes soft-glow {
+      0%   { text-shadow: 0 0 10px #ff9fd6; }
+      100% { text-shadow: 0 0 20px #ff66aa, 0 0 40px #ff99cc; }
+    }
+
+    .cursor-thread {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: #ff9fd6;
+      border-radius: 50%;
+      pointer-events: none;
+      opacity: 0.7;
+      box-shadow: 0 0 5px #ff9fd6, 0 0 10px #ff66aa;
+      animation: fadeOut 1s forwards;
+    }
+
+    @keyframes fadeOut {
+      to { opacity: 0; transform: scale(0.5); }
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <h1 class="nona-title">🪡 NONA MCGEE 🧵</h1>
+    <p>
+      She’s not loud. She’s not flashy. But everything survives because of her.
+    </p>
+    <p>
+      Nona sews the living back into their bodies.  
+      She holds chaos together with a laugh and a needle.  
+      Half-fae, half-saint, fully underestimated.
+    </p>
+
+    <span class="nona-note">“I stitched his heart back in. He never even thanked me.”</span>
+
+    <p>
+      You don’t find Nona — you return to her.  
+      When things fall apart, she’s already preparing thread.
+    </p>
+
+    <span class="nona-note">“There’s no such thing as ruined. Only waiting to be repurposed.”</span>
+
+    <p>
+      She has sharp scissors. And sharper insight.
+    </p>
+
+    <span class="nona-note secret-note" style="display:none;">
+      “You came back. I knew you would.”
+    </span>
+
+    <a href="index.html" class="glow-link">↩ Back to Terminal</a>
+  </div>
+
+  <!-- Secret note reveal -->
+  <script>
+    setTimeout(() => {
+      document.querySelector('.secret-note').style.display = 'block';
+    }, 8000);
+  </script>
+
+  <!-- Moth-thread mouse effect -->
+  <script>
+    document.addEventListener('mousemove', e => {
+      const dot = document.createElement('div');
+      dot.className = 'cursor-thread';
+      dot.style.left = `${e.pageX}px`;
+      dot.style.top = `${e.pageY}px`;
+      document.body.appendChild(dot);
+      setTimeout(() => dot.remove(), 1000);
+    });
+  </script>
+</body>
+</html>

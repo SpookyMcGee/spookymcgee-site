@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Star McGee</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+  <style>
+.pebbles {
+  font-style: italic;
+  font-weight: bold;
+  font-family: 'VT323', monospace;
+  background: linear-gradient(90deg, #ff66cc, #ff6, #6f6, #66ccff, #cc66ff, #ff66cc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow:
+    1px 0 #ff66cc,
+    -1px 0 #66ccff,
+    0 1px #ffff66,
+    0 -1px #cc66ff;
+  animation: rainbow-glitch 2s infinite;
+  display: inline-block;
+}
+
+@keyframes rainbow-glitch {
+  0%   { transform: translateX(0) skewX(0deg); }
+  20%  { transform: translateX(-1px) skewX(1deg); }
+  40%  { transform: translateX(1px) skewX(-1deg); }
+  60%  { transform: translateX(-2px) skewX(2deg); }
+  80%  { transform: translateX(2px) skewX(-2deg); }
+  100% { transform: translateX(0) skewX(0deg); }
+}
+
+    body {
+      background-color: black;
+      color: #fff0f5;
+      font-family: 'VT323', monospace;
+      padding: 2rem;
+      font-size: 1.4rem;
+      overflow-x: hidden;
+    }
+
+    .star-title {
+      color: #ff8cf0;
+      text-shadow: 0 0 10px #ff8cf0, 0 0 20px #ff2bf0;
+      font-size: 2rem;
+      animation: glitch 2s infinite alternate;
+    }
+
+    .moth {
+      color: #fdf6c3;
+      text-shadow: 0 0 5px #fdf6c3;
+      animation: flutter 4s infinite ease-in-out;
+    }
+
+    .pebbles {
+      font-style: italic;
+      color: #c3f9ff;
+      text-shadow: 0 0 6px #6cfaff;
+    }
+
+    .glow-link {
+      display: inline-block;
+      margin-top: 2rem;
+      color: #ff8cf0;
+      text-decoration: none;
+      text-shadow: 0 0 5px #ff8cf0;
+    }
+
+    .glow-link:hover {
+      text-shadow: 0 0 10px #ff8cf0, 0 0 25px #ff66cc;
+    }
+
+    @keyframes glitch {
+      0%   { transform: translate(0, 0); }
+      20%  { transform: translate(-1px, 1px); }
+      40%  { transform: translate(1px, -1px); }
+      60%  { transform: translate(-2px, 2px); }
+      80%  { transform: translate(2px, -1px); }
+      100% { transform: translate(0, 0); }
+    }
+
+    @keyframes flutter {
+      0%, 100% { transform: translateY(0px); }
+      50%      { transform: translateY(-4px); }
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <h1 class="star-title">🦋 ☾ STAR MCGEE ☽ 🦋</h1>
+
+    <p>
+      Star is light. Star is fire.  
+      Born ready, already on the battlefield.  
+      She doesn’t flinch. She doesn’t wait. She moves like she’s always known the outcome.
+    </p>
+
+    <p class="moth">
+      Moths are her disguise. Her shield. Her scouts.  
+      They swarm and shimmer, and in a blink, she’s gone—  
+      or glowing in full form, a being of light with wings that whisper ancient things.
+    </p>
+
+    <p>
+      She’s her father’s bite and her mother’s softness.  
+      The best and worst stitched together, made whole by will alone.
+    </p>
+
+    <p>
+      And some days—when chaos calls—she’s not Star at all.  
+      She’s <span class="pebbles">Pebbles</span>: a street clown with sass,  
+      a half-fae wild card who flips fate with a grin and glitter.
+    </p>
+
+    <p>
+      Don’t follow her lead.  
+      She’s already ten steps ahead—laughing, glowing, guiding the way.
+    </p>
+
+    <a href="index.html" class="glow-link">↩ Back to Terminal</a>
+  </div>
+</body>
+</html>

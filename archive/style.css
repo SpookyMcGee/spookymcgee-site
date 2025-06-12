@@ -1,0 +1,47 @@
+body {
+  margin: 0;
+  background: black;
+  color: #00ff00;
+  font-family: 'VT323', monospace;
+  font-size: 1.5em;
+  padding: 2rem;
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+
+.glow {
+  text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00;
+}
+
+.blinker {
+  display: inline-block;
+  width: 1ch;
+  background: #00ff00;
+  animation: blink 1s steps(2, start) infinite;
+}
+
+@keyframes blink {
+  to { background: transparent; }
+}
+.term-link {
+  color: #00ff00;
+  text-decoration: none;
+  font-family: 'VT323', monospace;
+}
+
+.term-link:hover {
+  text-decoration: underline;
+  text-shadow: 0 0 5px #00ff00, 0 0 15px #00ff00;
+}
+.flicker {
+  animation: spooky-flicker 1.2s infinite alternate;
+}
+
+@keyframes spooky-flicker {
+  0% { opacity: 1; }
+  20% { opacity: 0.3; }
+  40% { opacity: 0.6; }
+  60% { opacity: 0.1; }
+  80% { opacity: 0.7; }
+  100% { opacity: 1; }
+}

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spooky McGee</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=VT323&family=Special+Elite&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: black;
+      color: #00ffee;
+      font-family: 'VT323', monospace;
+      padding: 2rem;
+      font-size: 1.4rem;
+    }
+
+    .spooky-title {
+      font-size: 2rem;
+      color: #00ffee;
+      text-shadow: 0 0 10px #00ffee, 0 0 20px #22ffff;
+      animation: flicker 2s infinite alternate;
+    }
+
+    .spooky-glitch {
+      font-family: 'Special+Elite', monospace;
+      color: #ff0066;
+      text-shadow: 0 0 4px #ff0066, 0 0 8px #ff3399;
+      animation: glitch 3s infinite;
+      display: inline-block;
+    }
+
+    .glow-link {
+      display: inline-block;
+      margin-top: 2rem;
+      color: #00ffee;
+      text-decoration: none;
+      text-shadow: 0 0 5px #00ffee;
+    }
+
+    .glow-link:hover {
+      text-shadow: 0 0 10px #00ffee, 0 0 25px #00ffff;
+    }
+
+    .glow-link:active {
+      transform: scale(0.97) translateY(1px);
+      filter: brightness(1.2);
+    }
+
+    @keyframes flicker {
+      0% { opacity: 1; }
+      100% { opacity: 0.95; transform: translateY(-0.5px); }
+    }
+
+    @keyframes glitch {
+      0% { transform: translate(0); }
+      33% { transform: translateX(-1px); }
+      66% { transform: translateX(2px); }
+      100% { transform: translate(0); }
+    }
+#reroll-btn {
+  background: transparent;
+  border: none;
+  color: #00ffee;
+  font-family: 'VT323', monospace;
+  font-size: 1.2rem;
+  cursor: pointer;
+  text-shadow: 0 0 5px #00ffee;
+  padding: 0;
+  margin-top: 1.5rem;
+}
+
+#reroll-btn:hover {
+  text-shadow: 0 0 10px #00ffee, 0 0 25px #00ffff;
+}
+
+#reroll-btn:active {
+  transform: scale(0.97) translateY(1px);
+  filter: brightness(1.2);
+}
+  </style>
+</head>
+<body>
+  <div>
+    <h1 class="spooky-title">🎩 SPOOKY MCGEE 🎩</h1>
+    <p>
+      Former mercenary. Full-time stitched enigma.  
+      Once pulled his own heart out. Nona stitched it back in. Now he laughs more.
+    </p>
+
+    <p>
+      Spooky talks to ghosts. He bargains with echoes.  
+      He never lies — he just... rearranges reality.
+    </p>
+
+    <p>
+      He wears a top hat not because he’s fancy,  
+      but because it holds the last thread he hasn’t used yet.
+    </p>
+
+    <button id="reroll-btn" class="glow-link">> Reroll reality</button>
+    <p id="spooky-quote" class="spooky-glitch"></p>
+
+    <a href="index.html" class="glow-link">↩ Back to Terminal</a>
+  </div>
+
+  <script>
+    const quotes = [
+      "“In another story, I already walked you through this part.”",
+      "“There was a version of you that didn’t survive. This one’s better.”",
+      "“Time doesn’t go forward. It loops around my boots.”",
+      "“You're not glitched. You’re just aware.”",
+      "“What if the thread was supposed to break here?”",
+      "“Shhh. The shadows are listening.”"
+    ];
+
+    const quoteElement = document.getElementById('spooky-quote');
+    const button = document.getElementById('reroll-btn');
+
+    // Load a random quote on page load
+    quoteElement.textContent = quotes[Math.floor(Math.random() * quotes.length)];
+
+    button.addEventListener('click', () => {
+      const random = Math.floor(Math.random() * quotes.length);
+      quoteElement.textContent = quotes[random];
+    });
+  </script>
+</body>
+</html>

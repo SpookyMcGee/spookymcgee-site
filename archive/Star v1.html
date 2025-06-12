@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Star McGee</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: black;
+      color: #fff0f5;
+      font-family: 'VT323', monospace;
+      padding: 2rem;
+      font-size: 1.4rem;
+      overflow-x: hidden;
+    }
+
+    .star-title {
+      color: #ff8cf0;
+      text-shadow: 0 0 10px #ff8cf0, 0 0 20px #ff2bf0;
+      font-size: 2rem;
+      animation: glitch 2s infinite alternate;
+    }
+
+    .moth {
+      color: #fdf6c3;
+      text-shadow: 0 0 5px #fdf6c3;
+      animation: flutter 4s infinite ease-in-out;
+    }
+
+    .glow-link {
+      display: inline-block;
+      margin-top: 2rem;
+      color: #ff8cf0;
+      text-decoration: none;
+      text-shadow: 0 0 5px #ff8cf0;
+    }
+
+    .glow-link:hover {
+      text-shadow: 0 0 10px #ff8cf0, 0 0 25px #ff66cc;
+    }
+
+    /* Glitch Animation */
+    @keyframes glitch {
+      0%   { transform: translate(0, 0); }
+      20%  { transform: translate(-1px, 1px); }
+      40%  { transform: translate(1px, -1px); }
+      60%  { transform: translate(-2px, 2px); }
+      80%  { transform: translate(2px, -1px); }
+      100% { transform: translate(0, 0); }
+    }
+
+    /* Fluttering Moth Text */
+    @keyframes flutter {
+      0%, 100% { transform: translateY(0px); }
+      50%      { transform: translateY(-4px); }
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <h1 class="star-title">☾ STAR MCGEE ☽</h1>
+    <p>
+      Born under a cracked moon. Raised by whispers.  
+      Half-fae, half-firecracker. All soul.  
+    </p>
+    <p>
+      Star doesn't follow rules — she unravels them with stardust.  
+      She speaks in half-rhymes and chaotic wisdom. Her laugh has startled gods.  
+    </p>
+    <p class="moth">
+      Moths follow her. They trust her more than the moon.  
+      If you ever see one land on your hand... she’s near.
+    </p>
+    <p>
+      She loves loud. She protects harder.  
+      And she’ll definitely enchant your coffee if you’re mean to her friends.
+    </p>
+
+    <a href="index.html" class="glow-link">↩ Back to Terminal</a>
+  </div>
+</body>
+</html>
