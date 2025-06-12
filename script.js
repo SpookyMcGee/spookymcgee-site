@@ -73,20 +73,4 @@ function typeLine() {
     const linkHack = document.getElementById('link-hack');
 if (linkHack) linkHack.style.display = 'block';
 
-   /* // ✅ Trigger glitch + hat AFTER typing is complete
-    setTimeout(() => {
-      const original = terminal.innerHTML;
-      terminal.innerHTML = '<pre class="glow">█▒▓▒▓▒█▒▓▒▓▒█▒▓▒▓▒█▒▓▒▓▒█</pre>';
-
-      setTimeout(() => {
-        terminal.innerHTML = '<pre class="glow">' + topHatArt + '</pre>';
-
-        setTimeout(() => {
-          terminal.innerHTML = original;
-        }, 3000);
-      }, 400);
-    }, 20000);
-  }
-}
-*/
 typeLine();
