@@ -20,7 +20,7 @@ const topHatArt = `⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠉⠙⠛⠛⠛⠛⠻⠻⠟⠛⠛⠛⠛⠛⠋⠉⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀`;
 
 const lines = [
-  'SpookyMcGee.com v1.1',
+  'SpookyMcGee.com v1.2',
   '',
   'Booting into the stitched dimension...',
   'LOADING_PROFILE_GLITCH',
