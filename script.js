@@ -29,7 +29,7 @@ const lines = [
   '[OK] — Connected to soul frequency',
   '[OK] — Echo signal detected',
   '',
-  'echo://space.sync.complete '
+  'echo://space.sync.complete',
   'resonance detected. you are known.',
   'Spooky is watching.',
   '',
