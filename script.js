@@ -29,7 +29,8 @@ const lines = [
   '[OK] — Connected to soul frequency',
   '[OK] — Echo signal detected',
   '',
-  'Welcome to the echo space.',
+  'echo://space.sync.complete '
+  'resonance detected. you are known.',
   'Spooky is watching.',
   '',
   '<a href="star.html" class="term-link">> ACCESS: /star.html — PROFILE ACTIVE</a>',
