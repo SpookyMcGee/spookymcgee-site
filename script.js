@@ -35,6 +35,7 @@ const lines = [
   '<a href="star.html" class="term-link">> ACCESS: /star.html — PROFILE ACTIVE</a>',
   '<a href="nona.html" class="term-link">> ACCESS: /nona.html — PROFILE STABLE</a>',
   '<a href="spooky.html" class="term-link">> ACCESS: /spooky.html — <span class="flicker">PROFILE CORRUPTED</span></a>',
+    '<a href="about.html" class="term-link">> ACCESS: /about.html — IDENTITY FILE</a>',
   '',
   '> logout initiated...',
   ''
