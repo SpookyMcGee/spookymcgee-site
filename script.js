@@ -23,7 +23,7 @@ const lines = [
   'SpookyMcGee.com v1.1',
   '',
   'Booting into the stitched dimension...',
-  'LOADING_PROFILE_GLITCH'',
+  'LOADING_PROFILE_GLITCH',
   'Accessing memory archive...',
   '',
   '[OK] — Connected to soul frequency',
@@ -35,7 +35,7 @@ const lines = [
   '<a href="star.html" class="term-link">> ACCESS: /star.html — PROFILE ACTIVE</a>',
   '<a href="nona.html" class="term-link">> ACCESS: /nona.html — PROFILE STABLE</a>',
   '<a href="spooky.html" class="term-link">> ACCESS: /spooky.html — <span class="flicker">PROFILE CORRUPTED</span></a>',
-    '<a href="about.html" class="term-link">> ACCESS: /about.html — IDENTITY FILE</a>',
+  '<a href="about.html" class="term-link">> ACCESS: /about.html — IDENTITY FILE</a>',
   '',
   '> logout initiated...',
   ''
@@ -48,10 +48,12 @@ let buffer = '';
 function typeLine() {
   if (lineIndex < lines.length) {
     const currentLine = lines[lineIndex];
-if (currentLine === 'LOADING_PROFILE_GLITCH') {
-  playProfileGlitch();
-  return;
-}
+
+    if (currentLine === 'LOADING_PROFILE_GLITCH') {
+      playProfileGlitch();
+      return;
+    }
+
     if (currentLine.includes('<a')) {
       buffer += currentLine + '<br>';
       terminal.innerHTML = buffer + '<span class="blinker">&nbsp;</span>';
@@ -71,7 +73,15 @@ if (currentLine === 'LOADING_PROFILE_GLITCH') {
       lineIndex++;
       setTimeout(typeLine, 250);
     }
-    function playProfileGlitch(callback) {
+  } else {
+    terminal.innerHTML = buffer;
+
+    const linkHack = document.getElementById('link-hack');
+    if (linkHack) linkHack.style.display = 'block';
+  }
+}
+
+function playProfileGlitch() {
   const glitchLines = [
     '> Loading user profile ███_███e',
     '> Loading user profile McGee.exe.brkn',
@@ -99,30 +109,5 @@ if (currentLine === 'LOADING_PROFILE_GLITCH') {
   showNext();
 }
 
-  } else {
-    
-    terminal.innerHTML = buffer;
-
-    // Only reveal link-hack if it exists
-    const linkHack = document.getElementById('link-hack');
-    if (linkHack) linkHack.style.display = 'block';
-  }
-}
-
-   /* // ✅ Trigger glitch + hat AFTER typing is complete
-    setTimeout(() => {
-      const original = terminal.innerHTML;
-      terminal.innerHTML = '<pre class="glow">█▒▓▒▓▒█▒▓▒▓▒█▒▓▒▓▒█▒▓▒▓▒█</pre>';
-
-      setTimeout(() => {
-        terminal.innerHTML = '<pre class="glow">' + topHatArt + '</pre>';
-
-        setTimeout(() => {
-          terminal.innerHTML = original;
-        }, 3000);
-      }, 400);
-    }, 20000);
-  }
-}
-*/
 typeLine();
+
