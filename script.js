@@ -100,6 +100,11 @@ function playProfileGlitch() {
       setTimeout(showNext, 450);
     } else {
       buffer += glitchLines[glitchLines.length - 1] + '<br>';
+      buffer += '> ALERT: Detected alternate instances of [spookymcgee]<br>';
+      buffer += '> Verifying soul signature...<br>';
+      buffer += '> No match found.<br>';
+      buffer += '> Echoes confirmed: shallow, disconnected, non-original.<br>';
+      buffer += '> Proceeding with core McGee.<br>';
       terminal.innerHTML = buffer + '<span class="blinker">&nbsp;</span>';
       lineIndex++;
       setTimeout(typeLine, 400);
