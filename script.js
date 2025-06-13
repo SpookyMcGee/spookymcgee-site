@@ -23,7 +23,7 @@ const lines = [
   'SpookyMcGee.com v1.1',
   '',
   'Booting into the stitched dimension...',
-  'Loading user profile [REDACTED_██_McGee]',
+  'LOADING_PROFILE_GLITCH'',
   'Accessing memory archive...',
   '',
   '[OK] — Connected to soul frequency',
@@ -48,7 +48,10 @@ let buffer = '';
 function typeLine() {
   if (lineIndex < lines.length) {
     const currentLine = lines[lineIndex];
-
+if (currentLine === 'LOADING_PROFILE_GLITCH') {
+  playProfileGlitch();
+  return;
+}
     if (currentLine.includes('<a')) {
       buffer += currentLine + '<br>';
       terminal.innerHTML = buffer + '<span class="blinker">&nbsp;</span>';
@@ -68,7 +71,36 @@ function typeLine() {
       lineIndex++;
       setTimeout(typeLine, 250);
     }
+    function playProfileGlitch(callback) {
+  const glitchLines = [
+    '> Loading user profile ███_███e',
+    '> Loading user profile McGee.exe.brkn',
+    '> Loading user profile NULL_PARENT_MCGΞΞ',
+    '> Loading user profile sp001ky::MCGE3',
+    '> Loading user profile ORPHANED THREAD',
+    '> Loading user profile McGee'
+  ];
+
+  let index = 0;
+
+  function showNext() {
+    if (index < glitchLines.length) {
+      terminal.innerHTML = buffer + glitchLines[index] + '<br><span class="blinker">&nbsp;</span>';
+      index++;
+      setTimeout(showNext, 450);
+    } else {
+      buffer += glitchLines[glitchLines.length - 1] + '<br>';
+      terminal.innerHTML = buffer + '<span class="blinker">&nbsp;</span>';
+      lineIndex++;
+      setTimeout(typeLine, 400);
+    }
+  }
+
+  showNext();
+}
+
   } else {
+    
     terminal.innerHTML = buffer;
 
     // Only reveal link-hack if it exists
