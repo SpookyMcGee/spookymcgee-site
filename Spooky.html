@@ -218,11 +218,37 @@
 .hidden {
   display: none;
 }
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: black;
+  z-index: 9999;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.overlay.show {
+  display: flex;
+}
+
+.overlay img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 
 
   </style>
 </head>
 <body>
+  <div id="spookyOverlay" class="overlay hidden">
+  <img id="overlayImage" src="" alt="Spooky Vision" />
+</div>
   <div class="fake-frame">
     <div class="frame-header">[ EXECUTABLE THREAD - spooky.mcgee//core.echo ]</div>
     <div class="frame-body">
@@ -283,29 +309,25 @@
     const image = document.getElementById('overlayImage');
 
     function showOverlay(src, duration, callback) {
-      overlay.classList.remove('hidden');
-      image.src = src;
+      image.src = `assets/${src}`;
+      overlay.classList.add('show');
       setTimeout(() => {
-        overlay.classList.add('hidden');
+        overlay.classList.remove('show');
         if (callback) callback();
       }, duration);
     }
 
     setTimeout(() => {
-      // First: static (1s)
       showOverlay('staticspooky.png', 1000, () => {
-        // Second: spooky bridge (3s)
-        showOverlay('spooky.png', 3000, () => {
-          // Third: static again (1s)
+        showOverlay('SPOOKYMCGEE.png', 3000, () => {
           showOverlay('staticspooky.png', 1000);
         });
       });
-
-
       sessionStorage.setItem('spookySeen', 'true');
-    }, 5000);
+    }, 5000); // starts after 5 seconds
   });
 </script>
+
 
 </body>
 </html>
