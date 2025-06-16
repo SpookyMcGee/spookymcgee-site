@@ -223,7 +223,6 @@
   </style>
 </head>
 <body>
-  body>
   <div class="fake-frame">
     <div class="frame-header">[ EXECUTABLE THREAD - spooky.mcgee//core.echo ]</div>
     <div class="frame-body">
@@ -250,8 +249,8 @@
 
     <a href="index.html" class="glow-link">↩ Back to Terminal</a>
   </div>
-  <div id="staticspooky" class="overlay hidden">
-  <img id="SPOOKYMCGEE" src="" alt="Spooky Vision" />
+  <div id="spookyOverlay" class="overlay hidden">
+  <img id="overlayImage" src="" alt="Spooky Vision" />
 </div>
 
 
@@ -293,14 +292,16 @@
     }
 
     setTimeout(() => {
-      // First: static (1s)
-      showOverlay('staticspooky.png', 1000, () => {
-        // Second: spooky bridge (3s)
-        showOverlay('spooky.png', 3000, () => {
-          // Third: static again (1s)
-          showOverlay('staticspooky.png', 1000);
-        });
-      });
+// First: static (1s)
+showOverlay('staticspooky.gif', 1000, () => {
+  // Second: spooky bridge (3s)
+  showOverlay('spooky.png', 3000, () => {
+    // Third: static again (1s)
+    showOverlay('staticspooky.gif', 1000);
+  });
+});
+
+
       sessionStorage.setItem('spookySeen', 'true');
     }, 5000);
   });
