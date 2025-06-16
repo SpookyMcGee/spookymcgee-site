@@ -12,7 +12,9 @@
   font-style: italic;
   font-weight: bold;
   font-family: 'VT323', monospace;
+  display: inline-block;
   background: linear-gradient(90deg, #ff66cc, #ff6, #6f6, #66ccff, #cc66ff, #ff66cc);
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   text-shadow:
@@ -21,8 +23,10 @@
     0 1px #ffff66,
     0 -1px #cc66ff;
   animation: rainbow-glitch 2s infinite;
-  display: inline-block;
 }
+
+
+
 
 @keyframes rainbow-glitch {
   0%   { transform: translateX(0) skewX(0deg); }
@@ -86,9 +90,36 @@
       0%, 100% { transform: translateY(0px); }
       50%      { transform: translateY(-4px); }
     }
+    .fake-frame {
+  max-width: 900px;
+  margin: 2rem auto;
+  border: 2px solid #00ffe0;
+  background: rgba(0, 255, 200, 0.08);
+  box-shadow: 0 0 15px #00ffe0;
+}
+
+.frame-header {
+  padding: 0.75rem 1rem;
+  font-weight: bold;
+  background: #001f1f;
+  color: #00ffe0;
+  border-bottom: 2px solid #00ffe0;
+  font-size: 1rem;
+  text-shadow: 0 0 4px #00ffee;
+}
+
+.frame-body {
+  padding: 1.25rem;
+  line-height: 1.4;
+  word-wrap: break-word;
+}
   </style>
 </head>
 <body>
+  body>
+  <div class="fake-frame">
+    <div class="frame-header">[ STELLAR NODE - star.mcgee//beacon.trace.Δwave ]</div>
+    <div class="frame-body">
   <div>
     <h1 class="star-title">🦋 ☾ STAR MCGEE ☽ 🦋</h1>
 

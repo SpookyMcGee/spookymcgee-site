@@ -64,10 +64,43 @@
     @keyframes fadeOut {
       to { opacity: 0; transform: scale(0.5); }
     }
+    .fake-frame {
+  max-width: 900px;
+  margin: 2rem auto;
+  border: 2px solid #00ffe0;
+  background: rgba(0, 255, 200, 0.08);
+  box-shadow: 0 0 15px #00ffe0;
+}
+
+.frame-header {
+  padding: 0.75rem 1rem;
+  font-weight: bold;
+  background: #001f1f;
+  color: #00ffe0;
+  border-bottom: 2px solid #00ffe0;
+  font-size: 1rem;
+  text-shadow: 0 0 4px #00ffee;
+}
+
+.frame-body {
+  padding: 1.25rem;
+  line-height: 1.4;
+  word-wrap: break-word;
+}
+body {
+  margin: 0;
+  background: black;
+  color: #00ffee;
+  font-family: 'VT323', monospace;
+  font-size: 1.3rem;
+}
+
   </style>
 </head>
 <body>
-  <div>
+  <div class="fake-frame">
+    <div class="frame-header">[ THREAD ANCHOR - nona.mcgee//light.memory.safe ]</div>
+    <div class="frame-body">
     <h1 class="nona-title">🪡 NONA MCGEE 🧵</h1>
     <p>
       She’s not loud. She’s not flashy. But everything survives because of her.
@@ -116,5 +149,6 @@
       setTimeout(() => dot.remove(), 1000);
     });
   </script>
+  z
 </body>
 </html>
