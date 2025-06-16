@@ -43,12 +43,36 @@
     @keyframes flicker {
       0% { opacity: 1; }
       100% { opacity: 0.8; }
+      
     }
+    .ascii img {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  display: block;
+}
+#gif-overlay::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100px;
+  height: 40px;
+  background: black; /* or match your theme */
+  z-index: 10000;
+}
+
   </style>
 </head>
 <body class="glow">
-
   <div class="ascii">
+  <img src="images/tophatgif.gif" alt="Loading Top Hat" style="width: 100%; max-width: 480px; margin: 0 auto; display: block;" />
+</div>
+
+<!---
+  <div class="ascii">
+   
+  <div>This code is temporarily disabled</div>
 <pre>
 ⠀⠀⠀⠀⠀⠀⠀⠀                ⠀⠀⠀⠀⠀⠀⠀⠀⠀
              ⣀⣀⣠⣤⣤⣤⣤⣤⣤⣴⢶⣲⣖⣦⢶⣖⣦⣦⣤⣤⣤⣤⣀⣀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀
@@ -71,19 +95,26 @@
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠉⠙⠛⠛⠛⠛⠻⠻⠟⠛⠛⠛⠛⠛⠋⠉⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 </pre>
   </div>
-
+---->
   <div>Hatter OS v0.9a - Initializing echo modules...</div>
   <div id="progress">[▒▒▒▒▒▒▒▒]</div>
 
   <script>
     const progressBar = document.getElementById("progress");
 const stages = [
+  "[▒▒▒▒▒▒▒▒]",
   "[█▒▒▒▒▒▒▒]",
   "[██▒▒▒▒▒▒]",
+  "[███▒▒▒▒▒]",
   "[████▒▒▒▒]",
+  "[█████▒▒▒]",
   "[██████▒▒]",
+  "[███████▒]",
+  "[████████]",
+  "[████████]",
   "[████████]"
 ];
+
 
 let stage = 0;
 
