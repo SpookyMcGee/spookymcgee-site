@@ -247,7 +247,7 @@
   </style>
 </head>
 <body>
- <div id="spookyOverlay" class="overlay hidden">
+<div id="spookyOverlay" class="overlay hidden">
   <img id="overlayImage" src="" alt="Spooky Vision" />
 </div>
 
@@ -311,8 +311,9 @@
     const image = document.getElementById('overlayImage');
 
     function showOverlay(src, duration, callback) {
-      image.src = `assets/${src}`; // uses your assets folder
+      image.src = src;
       overlay.classList.remove('hidden');
+
       setTimeout(() => {
         overlay.classList.add('hidden');
         if (callback) callback();
@@ -320,15 +321,17 @@
     }
 
     setTimeout(() => {
-      showOverlay('staticspooky.png', 1000, () => {
-        showOverlay('spooky.png', 3000, () => {
-          showOverlay('staticspooky.png', 1000);
+      showOverlay('assets/staticspooky.png', 1000, () => {
+        showOverlay('assets/spookymcgee.png', 3000, () => {
+          showOverlay('assets/staticspooky.png', 1000);
         });
       });
+
       sessionStorage.setItem('spookySeen', 'true');
     }, 5000);
   });
 </script>
+
 
 
 
