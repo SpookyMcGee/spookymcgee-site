@@ -115,5 +115,30 @@ function playProfileGlitch() {
   showNext();
 }
 
-typeLine();
+if (!sessionStorage.getItem('bootedOnce')) {
+  typeLine();
+  sessionStorage.setItem('bootedOnce', 'true');
+} else {
+  showFullyBootedTerminal();
+}
+function showFullyBootedTerminal() {
+  buffer = `
+    SpookyMcGee.com v1.2<br>
+    > Welcome back, same soul thread detected.<br>
+    [OK] — Connected to soul frequency<br>
+    [OK] — Echo signal detected<br>
+    <br>
+    echo://space.sync.complete<br>
+    resonance detected. you are known.<br>
+    Spooky is watching.<br>
+    <br>
+    <a href="star.html" class="term-link">> ACCESS: /star.html — PROFILE ACTIVE</a><br>
+    <a href="nona.html" class="term-link">> ACCESS: /nona.html — PROFILE STABLE</a><br>
+    <a href="spooky.html" class="term-link">> ACCESS: /spooky.html — <span class="flicker">PROFILE CORRUPTED</span></a><br>
+    <a href="about.html" class="term-link">> ACCESS: /about.html — IDENTITY FILE</a><br>
+    <br>
+    > logout initiated...
+  `;
 
+  terminal.innerHTML = buffer + '<span class="blinker">&nbsp;</span>';
+}
