@@ -1,3 +1,8 @@
+* {
+  box-sizing: border-box;
+  word-wrap: break-word;
+}
+
 body {
   margin: 0;
   background: black;
@@ -37,6 +42,7 @@ body {
   animation: spooky-flicker 1.2s infinite alternate;
 }
 
+
 @keyframes spooky-flicker {
   0% { opacity: 1; }
   20% { opacity: 0.3; }
@@ -54,12 +60,46 @@ body {
 #terminal {
   line-height: 1.1;
 }
-.frame-body p {
+body {
   margin: 0;
-  padding: 0;
-  line-height: 1.1;
+  padding: 2rem;
+  background: black;
+  color: #00ff00;
+  font-family: 'VT323', monospace;
+  font-size: 1.3rem;
+  line-height: 1.4;
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
-.frame-body p + p {
-  margin-top: 0.75rem;
+#terminal {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 1rem;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.fake-frame {
+  width: 100%;
+  max-width: 100%;
+  padding: 1rem;
+  margin: 1rem auto;
+  box-shadow: 0 0 15px #00ffe0;
+  border: 2px solid #00ffe0;
+  background: rgba(0, 255, 200, 0.08);
+  overflow-wrap: break-word;
+}
+
+.frame-header {
+  font-size: 1rem;
+  padding: 0.75rem;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+.frame-body {
+  padding: 1rem 0;
+  white-space: normal;
+  overflow-wrap: break-word;
 }
