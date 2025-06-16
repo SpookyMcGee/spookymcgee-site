@@ -20,7 +20,7 @@ const topHatArt = `⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠉⠙⠛⠛⠛⠛⠻⠻⠟⠛⠛⠛⠛⠛⠋⠉⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀`;
 
 const lines = [
-  'SpookyMcGee.com v1.2',
+  'SpookyMcGee.com v1.4',
   '',
   'Booting into the stitched dimension...',
   'LOADING_PROFILE_GLITCH',
@@ -123,7 +123,7 @@ if (!sessionStorage.getItem('bootedOnce')) {
 }
 function showFullyBootedTerminal() {
   buffer = `
-    SpookyMcGee.com v1.2<br>
+    SpookyMcGee.com v1.4<br>
     > Welcome back, same soul thread detected.<br>
     [OK] — Connected to soul frequency<br>
     [OK] — Echo signal detected<br>
