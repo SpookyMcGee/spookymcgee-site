@@ -17,16 +17,26 @@
       line-height: 1.1;
       white-space: pre-wrap;
     }
-
-    .fake-frame {
-      border: 2px solid #00ffe0;
-      background: rgba(0, 255, 200, 0.08);
-      padding: 1rem;
-      max-width: 800px;
-      margin: 2rem auto;
-      box-shadow: 0 0 15px #00ffe0;
-      position: relative;
-    }
+.frame-body {
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  white-space: normal; /* THIS is the killer fix */
+}
+.fake-frame {
+  border: 2px solid #00ffe0;
+  background: rgba(0, 255, 200, 0.08);
+  padding: 1.5rem;
+  max-width: 800px;
+  margin: 2rem auto;
+  box-shadow: 0 0 15px #00ffe0;
+  position: relative;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  overflow-x: hidden;
+}
+      
+    
 
     .frame-header {
       font-weight: bold;
@@ -75,55 +85,72 @@
 .frame-body p + p {
   margin-top: 0.75rem;
 }
+.da-link {
+  color: #cc66ff;
+  text-shadow: 0 0 5px #cc66ff, 0 0 10px #9933cc;
+}
 
+.da-link:hover {
+  text-shadow: 0 0 10px #cc66ff, 0 0 20px #cc33ff;
+}
   </style>
 </head>
 <body>
   <div class="fake-frame">
-  <div class="frame-header">[ SYSTEM FILE - ABOUT.html ]</div>
-  <div class="frame-body">
+    <div class="frame-header">[ SYSTEM FILE - ABOUT.html ]</div>
+    <div class="frame-body">
       <h1 class="title"> The Origin of Spooky McGee </h1>
+
       <p>
         In the summer of 2003, Sean stepped into a Tower Records with a few friends and walked out with a piece of destiny.
         Nestled on the shelf was a strange toy—a creation from Jhonen Vasquez’s twisted comic universe. Its name: "Spooky, the thing that squeeks."
         With its spiky hair and haunted gaze, something about it felt eerily familiar. Sean, just fifteen at the time, felt instantly drawn to it.
         It squeaked when pressed—an oddly fitting trait, as his friends often made him jump the same way.
       </p>
+
       <p>
         Later that day, while staring at the toy in his friend’s room, a name surfaced unshakably in his mind: Spooky.
         But it wasn’t enough. He needed a surname. His eyes landed on a copy of American McGee’s Alice sitting on the shelf.
         The result was obvious: Spooky McGee.
       </p>
+
       <p>
         That same year, Sean discovered DeviantArt—a different beast in 2003—and needed a username. Spooky McGee became his identity.
-        His first post, dated September 12, 2003, envisioned Spooky under the alias “Sp1ker 0M3GA,” a nod to the film *Hackers*.
+        His first post, dated September 12, 2003, envisioned Spooky under the alias “Sp1ker 0M3GA,” a nod to the film <em>Hackers</em>.
         You can still find it online: 
-        <a href="https://www.deviantart.com/spookymcgee/art/First-Submission-to-DA-3018882" target="_blank" class="glow-link">First Submission to DA</a>.
-      </p>
+      <a href="https://www.deviantart.com/spookymcgee/art/First-Submission-to-DA-3018882" target="_blank" class="glow-link da-link">
+  First Submission to DA
+</a>
       <p>
         Over the years, Spooky evolved. He became a character in stories, a whispered name around Orange County, a strange myth.
         Sean introduced himself that way for a time, and legends—however small—began to form. The name faded, but Sean never let it go.
         Sometimes Spooky was a monster. Sometimes, he was a prayer. But always, he was a part of something.
       </p>
+
       <p>
         In 2022, Sean felt a nudge to lay the name down. But it didn’t stick. Because in April 2024, while outlining a story titled <em>Ravens Immortal</em>,
         Spooky McGee rose again. No longer a mask—this time, a fully-formed soul.
       </p>
+
       <p>
-        In this world, Spooky became flesh. A war-born ragdoll. A reluctant prophet. A stitched wanderer with too many memories.
-        He gained a family:
-        A wife named Nona, inspired by Sean’s friend Amanda F.
+        In this world, Spooky became flesh. A war-born ragdoll. A reluctant prophet. A stitched wanderer with too many memories.<br>
+        He gained a family:<br>
+        A wife named Nona, inspired by Sean’s friend Amanda F.<br>
         A daughter named Star, inspired by his friend Eva—with full blessings from both.
       </p>
+
       <p>
-        You might find the name elsewhere now. On playlists. In strange corners of the internet.
+        You might find the name elsewhere now. On playlists. In strange corners of the internet.<br>
         But those are echoes. This is the source.
       </p>
+
       <p>
         Spooky McGee lives on—not just in stories, but in the threads of real people, real grief, and real magic stitched back together.
       </p>
+
       <a href="index.html" class="glow-link">↩ Return to Terminal</a>
     </div>
   </div>
 </body>
+
 </html>
