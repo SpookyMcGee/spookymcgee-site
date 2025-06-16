@@ -220,19 +220,15 @@
 }
 .overlay {
   position: fixed;
-  top: 0;
-  left: 0;
+  top: 0; left: 0;
   width: 100vw;
   height: 100vh;
   background: black;
   z-index: 9999;
-  display: none;
+  display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.overlay.show {
-  display: flex;
+  transition: opacity 0.4s ease;
 }
 
 .overlay img {
@@ -241,14 +237,20 @@
   object-fit: cover;
 }
 
+.hidden {
+  display: none;
+}
+
+
 
 
   </style>
 </head>
 <body>
-  <div id="spookyOverlay" class="overlay hidden">
+ <div id="spookyOverlay" class="overlay hidden">
   <img id="overlayImage" src="" alt="Spooky Vision" />
 </div>
+
   <div class="fake-frame">
     <div class="frame-header">[ EXECUTABLE THREAD - spooky.mcgee//core.echo ]</div>
     <div class="frame-body">
@@ -309,24 +311,25 @@
     const image = document.getElementById('overlayImage');
 
     function showOverlay(src, duration, callback) {
-      image.src = `assets/${src}`;
-      overlay.classList.add('show');
+      image.src = `assets/${src}`; // uses your assets folder
+      overlay.classList.remove('hidden');
       setTimeout(() => {
-        overlay.classList.remove('show');
+        overlay.classList.add('hidden');
         if (callback) callback();
       }, duration);
     }
 
     setTimeout(() => {
       showOverlay('staticspooky.png', 1000, () => {
-        showOverlay('SPOOKYMCGEE.png', 3000, () => {
+        showOverlay('spooky.png', 3000, () => {
           showOverlay('staticspooky.png', 1000);
         });
       });
       sessionStorage.setItem('spookySeen', 'true');
-    }, 5000); // starts after 5 seconds
+    }, 5000);
   });
 </script>
+
 
 
 </body>
