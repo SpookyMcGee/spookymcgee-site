@@ -240,17 +240,44 @@
 .hidden {
   display: none;
 }
+#spooky-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity 1s ease;
+  pointer-events: none;
+}
 
+#spooky-overlay.show {
+  opacity: 1;
+  pointer-events: auto;
+}
 
-
+#spooky-overlay img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
   </style>
 </head>
 <body>
+  <!----
 <div id="spookyOverlay" class="overlay hidden">
   <img id="overlayImage" src="" alt="Spooky Vision" />
 </div>
-
+-->
+<div id="spooky-overlay" class="hidden">
+  <img src="images/spookyliveaction.gif" alt="Spooky McGee" />
+</div>
   <div class="fake-frame">
     <div class="frame-header">[ EXECUTABLE THREAD - spooky.mcgee//core.echo ]</div>
     <div class="frame-body">
@@ -275,12 +302,14 @@
     <button id="reroll-btn">> Reroll reality</button>
     <p id="spooky-quote" class="spooky-glitch"></p>
 
-    <a href="index.html" class="glow-link">↩ Back to Terminal</a>
+    <a href="index.html" class="glow-link">
+      ↩ Back to Terminal</a>
+      <!----
   </div>
   <div id="spookyOverlay" class="overlay hidden">
   <img id="overlayImage" src="" alt="Spooky Vision" />
 </div>
-
+--->
 
   <script>
     const quotes = [
@@ -303,6 +332,7 @@
       quoteElement.textContent = quotes[random];
     });
   </script>
+  <!----
   <script>
   window.addEventListener('DOMContentLoaded', () => {
     if (sessionStorage.getItem('spookySeen')) return;
@@ -330,6 +360,27 @@
       sessionStorage.setItem('spookySeen', 'true');
     }, 5000);
   });
+  -->
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    const overlay = document.getElementById('spooky-overlay');
+
+    setTimeout(() => {
+      overlay.classList.remove('hidden');
+      overlay.classList.add('show');
+
+      // Hide after 4.5 seconds
+      setTimeout(() => {
+        overlay.classList.remove('show');
+        // Optional: fully remove it after fade-out
+        setTimeout(() => {
+          overlay.classList.add('hidden');
+        }, 1000); // matches the transition fade-out
+      }, 4500); // 4.5 seconds visible
+
+    }, 5000); // wait 5 seconds before showing
+  });
+</script>
 </script>
 
 
