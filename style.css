@@ -54,3 +54,12 @@ body {
 #terminal {
   line-height: 1.1;
 }
+.frame-body p {
+  margin: 0;
+  padding: 0;
+  line-height: 1.1;
+}
+
+.frame-body p + p {
+  margin-top: 0.75rem;
+}

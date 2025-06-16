@@ -67,15 +67,21 @@
       100% { opacity: 0.95; transform: translateY(-0.5px); }
     }
     .frame-body p {
-  margin: 0 0 0.75rem 0;  /* Top, Right, Bottom, Left */
+  margin: 0;
+  padding: 0;
   line-height: 1.1;
 }
+
+.frame-body p + p {
+  margin-top: 0.75rem;
+}
+
   </style>
 </head>
 <body>
   <div class="fake-frame">
-    <div class="frame-header">[ SYSTEM FILE - ABOUT.html ]</div>
-    <div class="frame-body">
+  <div class="frame-header">[ SYSTEM FILE - ABOUT.html ]</div>
+  <div class="frame-body">
       <h1 class="title"> The Origin of Spooky McGee </h1>
       <p>
         In the summer of 2003, Sean stepped into a Tower Records with a few friends and walked out with a piece of destiny.
