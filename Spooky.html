@@ -292,14 +292,14 @@
     }
 
     setTimeout(() => {
-// First: static (1s)
-showOverlay('staticspooky.gif', 1000, () => {
-  // Second: spooky bridge (3s)
-  showOverlay('spooky.png', 3000, () => {
-    // Third: static again (1s)
-    showOverlay('staticspooky.gif', 1000);
-  });
-});
+      // First: static (1s)
+      showOverlay('staticspooky.png', 1000, () => {
+        // Second: spooky bridge (3s)
+        showOverlay('spooky.png', 3000, () => {
+          // Third: static again (1s)
+          showOverlay('staticspooky.png', 1000);
+        });
+      });
 
 
       sessionStorage.setItem('spookySeen', 'true');
