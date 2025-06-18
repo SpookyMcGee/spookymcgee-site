@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://assets.codepen.io/16327/ScrambleTextPlugin3.min.js"></script>
   <link rel="canonical" href="https://spookymcgee.com/spooky.html" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Spooky McGee</title>
   <link href="https://fonts.googleapis.com/css2?family=VT323&family=Special+Elite&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/SplitText.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrambleTextPlugin.min.js"></script>
   <style>
     html, body {
       height: 100%;
@@ -269,10 +268,7 @@
   height: 100%;
   object-fit: cover;
 }
-.char {
-  display: inline-block;
-  /* keep spacing, alignment */
-}
+
   </style>
 </head>
 <body>
@@ -291,19 +287,19 @@
   <div>
     <h1 class="spooky-title">🎩 SPOOKY MCGEE 🎩</h1>
 
-    <p class="reveal-text">Stitched from war. Rewritten by love.</p>
+    <p class="scramble-me">Stitched from war. Rewritten by love.</p>
 
-    <p class="reveal-text">
+    <p class="scramble-me">
       Spooky McGee was once a lifeless ragdoll made for battle — until heartbreak tore him open.<br>
       He pulled out his own heart. Nona stitched it back in. The pain never left, but neither did he.
     </p>
 
-    <p class="reveal-text">
+    <p class="scramble-me">
       A soldier, a wanderer, a father.<br>
       He walks the dreamlike cracks of reality, talking in riddles and smiling like he remembers everything you forgot.
     </p>
 
-    <p class="reveal-text">He’s the thread between worlds. And he’s watching.</p>
+    <p>He’s the thread between worlds. And he’s watching.</p>
 
     <button id="reroll-btn">> Reroll reality</button>
     <p id="spooky-quote" class="spooky-glitch"></p>
@@ -386,84 +382,6 @@
 
     }, 5000); // wait 5 seconds before showing
   });
-<script>
-  let textRevealRadius = window.innerWidth * 0.17;
-  const st = new SplitText(".reveal-text", { type: "chars", charsClass: "char" });
-  st.chars.forEach(c => c.orig = c.textContent);
-
-  let pageX = 0;
-  let pageY = 0;
-  let scrollY = window.pageYOffset;
-  let scrollX = window.pageXOffset;
-
-  let charData = [];
-
-  function updateCharData() {
-    charData = st.chars.map(char => {
-      const bounds = char.getBoundingClientRect();
-      return {
-        el: char,
-        pageY: bounds.top + scrollY + bounds.height / 2,
-        pageX: bounds.left + scrollX + bounds.width / 2,
-        isVisible: false
-      };
-    });
-  }
-
-  function updateText(e) {
-    if (e.pageY !== undefined) {
-      pageX = e.pageX;
-      pageY = e.pageY;
-    } else {
-      let dy = window.pageYOffset - scrollY;
-      let dx = window.pageXOffset - scrollX;
-      scrollY += dy;
-      scrollX += dx;
-      pageY += dy;
-      pageX += dx;
-    }
-
-    charData.forEach(data => {
-      const dx = pageX - data.pageX;
-      const dy = pageY - data.pageY;
-      const dist = Math.sqrt(dx * dx + dy * dy);
-      const isVisible = dist < textRevealRadius;
-
-      if (isVisible !== data.isVisible || !isVisible) {
-        data.isVisible = isVisible;
-        gsap.to(data.el, {
-          overwrite: true,
-          duration: gsap.utils.clamp(0.3, 1.5, dist / textRevealRadius),
-          scrambleText: {
-            text: isVisible ? data.el.orig : getRandomLetter(),
-            chars: "upperAndLowerCase"
-          }
-        });
-      }
-    });
-  }
-
-  const upperAndLowerCase = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
-  const getRandomLetter = () =>
-    upperAndLowerCase[Math.floor(Math.random() * upperAndLowerCase.length)];
-
-  function handleResize() {
-    textRevealRadius = window.innerWidth * 0.17;
-    updateCharData();
-  }
-
-  function init() {
-    window.addEventListener('resize', handleResize);
-    window.addEventListener('pointermove', updateText);
-    window.addEventListener('scroll', updateText);
-
-    handleResize();
-    updateText({ pageX: 0, pageY: 0 });
-  }
-
-  init();
-</script>
-
 </script>
 </script>
 
