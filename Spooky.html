@@ -1,21 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-<script src="https://assets.codepen.io/16327/ScrambleTextPlugin3.min.js"></script>
   <link rel="canonical" href="https://spookymcgee.com/spooky.html" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Spooky McGee</title>
   <link href="https://fonts.googleapis.com/css2?family=VT323&family=Special+Elite&display=swap" rel="stylesheet">
-  <!-- GSAP core -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 
-<!-- ScrambleText Plugin -->
-<script src="https://assets.codepen.io/16327/ScrambleTextPlugin3.min.js"></script>
-
-<!-- (Optional) SplitText plugin, if using character-level animation -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/SplitText.min.js"></script>
 
   <style>
     html, body {
@@ -296,14 +287,14 @@
   <div>
     <h1 class="spooky-title">🎩 SPOOKY MCGEE 🎩</h1>
 
-    <p class="scramble-text">Stitched from war. Rewritten by love.</p>
+    <p>Stitched from war. Rewritten by love.</p>
 
-    <p class="scramble-text">
+    <p>
       Spooky McGee was once a lifeless ragdoll made for battle — until heartbreak tore him open.<br>
       He pulled out his own heart. Nona stitched it back in. The pain never left, but neither did he.
     </p>
 
-    <p class="scramble-text">
+    <p>
       A soldier, a wanderer, a father.<br>
       He walks the dreamlike cracks of reality, talking in riddles and smiling like he remembers everything you forgot.
     </p>
@@ -392,25 +383,6 @@
     }, 5000); // wait 5 seconds before showing
   });
 </script>
-<script>
-  window.addEventListener("DOMContentLoaded", () => {
-    document.querySelectorAll('.scramble-text').forEach(el => {
-     gsap.to(el, {
-  duration: 2.5,
-  scrambleText: {
-    text: el.textContent,
-    chars: "upperAndLowerCase"
-  },
-  ease: "power2.inOut",
-  delay: 0.5
-        });
-    });
-  });
-</script>
-
-
-
-
 
 </body>
 </html>
