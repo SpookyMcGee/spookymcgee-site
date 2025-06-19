@@ -99,36 +99,41 @@
   <div>Hatter OS v0.9a - Initializing echo modules...</div>
   <div id="progress">[▒▒▒▒▒▒▒▒]</div>
 
-  <script>
-    const progressBar = document.getElementById("progress");
-const stages = [
-  "[▒▒▒▒▒▒▒▒]",
-  "[█▒▒▒▒▒▒▒]",
-  "[██▒▒▒▒▒▒]",
-  "[███▒▒▒▒▒]",
-  "[████▒▒▒▒]",
-  "[█████▒▒▒]",
-  "[██████▒▒]",
-  "[███████▒]",
-  "[████████]",
-  "[████████]",
-  "[████████]"
-];
+<script>
+  const progressBar = document.getElementById("progress");
+  const stages = [
+    "[▒▒▒▒▒▒▒▒]",
+    "[█▒▒▒▒▒▒▒]",
+    "[██▒▒▒▒▒▒]",
+    "[███▒▒▒▒▒]",
+    "[████▒▒▒▒]",
+    "[█████▒▒▒]",
+    "[██████▒▒]",
+    "[███████▒]",
+    "[████████]"
+  ];
 
+  let stage = 0;
+  let barLoop;
 
-let stage = 0;
-
-const interval = setInterval(() => {
-  progressBar.textContent = stages[stage];
-  stage++;
-
-  if (stage === stages.length) {
-    clearInterval(interval);
-    // As soon as we hit [████████], go straight to terminal
-    window.location.href = "terminal.html";
+  function loopProgressBar() {
+    barLoop = setInterval(() => {
+      progressBar.textContent = stages[stage];
+      stage = (stage + 1) % stages.length; // loop around
+    }, 200); // Adjust speed as desired
   }
-}, 350); // Adjust speed here (e.g., 350ms x 5 = 1.75s total)
-  </script>
+
+  // Start progress bar loop
+  loopProgressBar();
+
+  // Wait for GIF to finish (adjust to match your GIF length, e.g., 6000ms = 6s)
+  setTimeout(() => {
+    clearInterval(barLoop); // stop loop
+    progressBar.textContent = "[████████]";
+    window.location.href = "terminal.html"; // go to next page
+  }, 6000); // <-- change this to match the GIF duration
+</script>
+
 
 </body>
 </html>
