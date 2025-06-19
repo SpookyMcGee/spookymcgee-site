@@ -113,10 +113,53 @@
   line-height: 1.4;
   word-wrap: break-word;
 }
+.hidden {
+  display: none;
+}
+
+#star-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity 1s ease;
+  pointer-events: none;
+}
+
+#star-overlay.show {
+  opacity: 1;
+  pointer-events: auto;
+  display: flex;
+}
+
+#star-overlay img {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+}
+
+body {
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+body.show-page {
+  opacity: 1;
+}
+
   </style>
 </head>
 <body>
- 
+ <div id="star-overlay" class="hidden">
+  <img src="images/star2.gif" alt="Star McGee" />
+</div>
   <div class="fake-frame">
     <div class="frame-header">[ STELLAR NODE - star.mcgee//beacon.trace.Δwave ]</div>
     <div class="frame-body">
@@ -153,5 +196,28 @@
 
     <a href="index.html" class="glow-link">↩ Back to Terminal</a>
   </div>
+  <script>
+  window.addEventListener('DOMContentLoaded', () => {
+    const overlay = document.getElementById('star-overlay');
+    const urlParams = new URLSearchParams(window.location.search);
+    const fromTerminal = urlParams.get('from') === 'terminal';
+
+    if (fromTerminal) {
+      overlay.classList.remove('hidden');
+      overlay.classList.add('show');
+
+      setTimeout(() => {
+        overlay.classList.remove('show');
+        setTimeout(() => {
+          overlay.classList.add('hidden');
+          document.body.classList.add('show-page');
+        }, 1000);
+      }, 4500);
+    } else {
+      document.body.classList.add('show-page');
+    }
+  });
+</script>
+
 </body>
 </html>
