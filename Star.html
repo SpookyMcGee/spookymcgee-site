@@ -7,36 +7,8 @@
   <title>Star McGee</title>
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+
   <style>
-.pebbles {
-  font-style: italic;
-  font-weight: bold;
-  font-family: 'VT323', monospace;
-  display: inline-block;
-  background: linear-gradient(90deg, #ff66cc, #ff6, #6f6, #66ccff, #cc66ff, #ff66cc);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-shadow:
-    1px 0 #ff66cc,
-    -1px 0 #66ccff,
-    0 1px #ffff66,
-    0 -1px #cc66ff;
-  animation: rainbow-glitch 2s infinite;
-}
-
-
-
-
-@keyframes rainbow-glitch {
-  0%   { transform: translateX(0) skewX(0deg); }
-  20%  { transform: translateX(-1px) skewX(1deg); }
-  40%  { transform: translateX(1px) skewX(-1deg); }
-  60%  { transform: translateX(-2px) skewX(2deg); }
-  80%  { transform: translateX(2px) skewX(-2deg); }
-  100% { transform: translateX(0) skewX(0deg); }
-}
-
     body {
       background-color: black;
       color: #fff0f5;
@@ -44,6 +16,61 @@
       padding: 2rem;
       font-size: 1.4rem;
       overflow-x: hidden;
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+
+    body.show-page {
+      opacity: 1;
+    }
+
+    #star-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: black;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      opacity: 1;
+      transition: opacity 1s ease;
+    }
+
+    #star-overlay.hidden {
+      display: none;
+    }
+
+    #star-gif {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .fake-frame {
+      max-width: 900px;
+      margin: 2rem auto;
+      border: 2px solid #00ffe0;
+      background: rgba(0, 255, 200, 0.08);
+      box-shadow: 0 0 15px #00ffe0;
+    }
+
+    .frame-header {
+      padding: 0.75rem 1rem;
+      font-weight: bold;
+      background: #001f1f;
+      color: #00ffe0;
+      border-bottom: 2px solid #00ffe0;
+      font-size: 1rem;
+      text-shadow: 0 0 4px #00ffee;
+    }
+
+    .frame-body {
+      padding: 1.25rem;
+      line-height: 1.4;
+      word-wrap: break-word;
     }
 
     .star-title {
@@ -53,16 +80,50 @@
       animation: glitch 2s infinite alternate;
     }
 
+    @keyframes glitch {
+      0%   { transform: translate(0, 0); }
+      20%  { transform: translate(-1px, 1px); }
+      40%  { transform: translate(1px, -1px); }
+      60%  { transform: translate(-2px, 2px); }
+      80%  { transform: translate(2px, -1px); }
+      100% { transform: translate(0, 0); }
+    }
+
     .moth {
       color: #fdf6c3;
       text-shadow: 0 0 5px #fdf6c3;
       animation: flutter 4s infinite ease-in-out;
     }
 
+    @keyframes flutter {
+      0%, 100% { transform: translateY(0px); }
+      50%      { transform: translateY(-4px); }
+    }
+
     .pebbles {
       font-style: italic;
-      color: #c3f9ff;
-      text-shadow: 0 0 6px #6cfaff;
+      font-weight: bold;
+      font-family: 'VT323', monospace;
+      display: inline-block;
+      background: linear-gradient(90deg, #ff66cc, #ff6, #6f6, #66ccff, #cc66ff, #ff66cc);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow:
+        1px 0 #ff66cc,
+        -1px 0 #66ccff,
+        0 1px #ffff66,
+        0 -1px #cc66ff;
+      animation: rainbow-glitch 2s infinite;
+    }
+
+    @keyframes rainbow-glitch {
+      0%   { transform: translateX(0) skewX(0deg); }
+      20%  { transform: translateX(-1px) skewX(1deg); }
+      40%  { transform: translateX(1px) skewX(-1deg); }
+      60%  { transform: translateX(-2px) skewX(2deg); }
+      80%  { transform: translateX(2px) skewX(-2deg); }
+      100% { transform: translateX(0) skewX(0deg); }
     }
 
     .glow-link {
@@ -76,148 +137,86 @@
     .glow-link:hover {
       text-shadow: 0 0 10px #ff8cf0, 0 0 25px #ff66cc;
     }
-
-    @keyframes glitch {
-      0%   { transform: translate(0, 0); }
-      20%  { transform: translate(-1px, 1px); }
-      40%  { transform: translate(1px, -1px); }
-      60%  { transform: translate(-2px, 2px); }
-      80%  { transform: translate(2px, -1px); }
-      100% { transform: translate(0, 0); }
-    }
-
-    @keyframes flutter {
-      0%, 100% { transform: translateY(0px); }
-      50%      { transform: translateY(-4px); }
-    }
-    .fake-frame {
-  max-width: 900px;
-  margin: 2rem auto;
-  border: 2px solid #00ffe0;
-  background: rgba(0, 255, 200, 0.08);
-  box-shadow: 0 0 15px #00ffe0;
-}
-
-.frame-header {
-  padding: 0.75rem 1rem;
-  font-weight: bold;
-  background: #001f1f;
-  color: #00ffe0;
-  border-bottom: 2px solid #00ffe0;
-  font-size: 1rem;
-  text-shadow: 0 0 4px #00ffee;
-}
-
-.frame-body {
-  padding: 1.25rem;
-  line-height: 1.4;
-  word-wrap: break-word;
-}
-.hidden {
-  display: none;
-}
-
-#star-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: black;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-  opacity: 0;
-  transition: opacity 1s ease;
-  pointer-events: none;
-}
-
-#star-overlay.show {
-  opacity: 1;
-  pointer-events: auto;
-  display: flex;
-}
-
-#star-overlay img {
-  width: 100vw;
-  height: 100vh;
-  object-fit: cover;
-}
-
-body {
-  opacity: 0;
-  transition: opacity 1s ease;
-}
-
-body.show-page {
-  opacity: 1;
-}
-
   </style>
 </head>
+
 <body>
- <div id="star-overlay" class="hidden">
-  <img src="images/star2.gif" alt="Star McGee" />
-</div>
+  <!-- Overlay -->
+  <div id="star-overlay">
+    <img id="star-gif" src="images/star2.gif" alt="Star McGee" />
+  </div>
+
+  <!-- Main Content -->
   <div class="fake-frame">
     <div class="frame-header">[ STELLAR NODE - star.mcgee//beacon.trace.Δwave ]</div>
     <div class="frame-body">
-  <div>
-    <h1 class="star-title">🦋 STAR MCGEE 🦋</h1>
+      <h1 class="star-title">🦋 STAR MCGEE 🦋</h1>
 
-    <p>
-      Star is light. Star is fire.  
-      Born ready, already on the battlefield.  
-      She doesn’t flinch. She doesn’t wait. She moves like she’s always known the outcome.
-    </p>
+      <p>
+        Star is light. Star is fire.  
+        Born ready, already on the battlefield.  
+        She doesn’t flinch. She doesn’t wait. She moves like she’s always known the outcome.
+      </p>
 
-    <p class="moth">
-      Moths are her disguise. Her shield. Her scouts.  
-      They swarm and shimmer, and in a blink, she’s gone—  
-      or glowing in full form, a being of light with wings that whisper ancient things.
-    </p>
+      <p class="moth">
+        Moths are her disguise. Her shield. Her scouts.  
+        They swarm and shimmer, and in a blink, she’s gone—  
+        or glowing in full form, a being of light with wings that whisper ancient things.
+      </p>
 
-    <p>
-      She’s her father’s bite and her mother’s softness.  
-      The best and worst stitched together, made whole by will alone.
-    </p>
+      <p>
+        She’s her father’s bite and her mother’s softness.  
+        The best and worst stitched together, made whole by will alone.
+      </p>
 
-    <p>
-      And some days—when chaos calls—she’s not Star at all.  
-      She’s <span class="pebbles">Pebbles</span>: a street clown with sass,  
-      a half-fae wild card who flips fate with a grin and glitter.
-    </p>
+      <p>
+        And some days—when chaos calls—she’s not Star at all.  
+        She’s <span class="pebbles">Pebbles</span>: a street clown with sass,  
+        a half-fae wild card who flips fate with a grin and glitter.
+      </p>
 
-    <p>
-      Don’t follow her lead.  
-      She’s already ten steps ahead—laughing, glowing, guiding the way.
-    </p>
+      <p>
+        Don’t follow her lead.  
+        She’s already ten steps ahead—laughing, glowing, guiding the way.
+      </p>
 
-    <a href="index.html" class="glow-link">↩ Back to Terminal</a>
+      <a href="index.html" class="glow-link">↩ Back to Terminal</a>
+    </div>
   </div>
+
+  <!-- Script -->
   <script>
-  window.addEventListener('DOMContentLoaded', () => {
-    const overlay = document.getElementById('star-overlay');
-    const urlParams = new URLSearchParams(window.location.search);
-    const fromTerminal = urlParams.get('from') === 'terminal';
+    window.addEventListener('DOMContentLoaded', () => {
+      const overlay = document.getElementById('star-overlay');
+      const img = document.getElementById('star-gif');
+      const urlParams = new URLSearchParams(window.location.search);
+      const fromTerminal = urlParams.get('from') === 'terminal';
 
-    if (fromTerminal) {
-      overlay.classList.remove('hidden');
-      overlay.classList.add('show');
-
-      setTimeout(() => {
-        overlay.classList.remove('show');
+      function startFade() {
+        overlay.style.opacity = '0';
         setTimeout(() => {
           overlay.classList.add('hidden');
           document.body.classList.add('show-page');
         }, 1000);
-      }, 4500);
-    } else {
-      document.body.classList.add('show-page');
-    }
-  });
-</script>
+      }
 
+      if (fromTerminal) {
+        if (img.complete) {
+          startFadeWithDelay();
+        } else {
+          img.onload = startFadeWithDelay;
+          img.src = img.src; // ensure reload
+        }
+
+        function startFadeWithDelay() {
+          setTimeout(() => startFade(), 500); // small delay before fade sequence
+        }
+      } else {
+        overlay.classList.add('hidden');
+        document.body.classList.add('show-page');
+      }
+    });
+  </script>
 </body>
 </html>
+
