@@ -268,6 +268,14 @@
   height: 100%;
   object-fit: cover;
 }
+body {
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+body.show-page {
+  opacity: 1;
+}
 
   </style>
 </head>
@@ -363,6 +371,7 @@
     }, 5000);
   });
   -->
+  <!-- SPOOKY MCGEE GIF OVERLAY RANDOM APPEARANCE
 <script>
   window.addEventListener('DOMContentLoaded', () => {
     const overlay = document.getElementById('spooky-overlay');
@@ -382,6 +391,35 @@
 
     }, 5000); // wait 5 seconds before showing
   });
+</script>
+-->
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    const overlay = document.getElementById('spooky-overlay');
+    const urlParams = new URLSearchParams(window.location.search);
+    const fromTerminal = urlParams.get('from') === 'terminal';
+
+    if (fromTerminal) {
+      overlay.classList.remove('hidden');
+      overlay.classList.add('show');
+
+      setTimeout(() => {
+        overlay.classList.remove('show');
+        setTimeout(() => {
+          overlay.classList.add('hidden');
+        }, 1000);
+      }, 4500); // GIF duration
+    }
+  });
+  document.body.classList.add('show-page');
+  setTimeout(() => {
+  overlay.classList.remove('show');
+  setTimeout(() => {
+    overlay.classList.add('hidden');
+    document.body.classList.add('show-page'); // fade in body
+  }, 1000);
+}, 4500);
+
 </script>
 
 </body>
