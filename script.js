@@ -1,144 +1,40 @@
-const terminal = document.getElementById('terminal');
-const topHatArt = `⠀⠀⠀⠀⠀⠀⠀⠀⠀
-        ⢀⣀⣀⣠⣤⣤⣤⣤⣤⣤⣴⢶⣲⣖⣦⢶⣖⣦⣦⣤⣤⣤⣤⣀⣀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠠⣶⣿⣿⣿⡿⣟⣯⣿⢯⣿⡽⣯⡿⣯⡷⣿⣽⣻⣾⣳⣯⣟⣷⣻⢾⣽⣻⢿⣽⣻⣷⡄⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⢿⣿⣿⣷⣿⣿⣯⣿⣻⣽⣿⣻⣽⢷⣿⣻⢾⡷⣯⣷⣟⣾⣷⣻⣿⣾⣽⣿⣾⣿⣿⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡏⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠁⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠘⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠇⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⢹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⣀⣤⣤⣶⣶⡿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢿⣶⣶⣤⣄⣀⠀⠀⠀⠀
-⠀⣠⣴⣿⣿⣿⣿⣿⣿⡇⠈⠙⠻⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠿⠛⠁⢸⣿⣿⣿⣿⣿⣿⣦⡄⠀
-⢠⣿⣿⣿⣿⣿⣿⣿⣿⣇⠀⠀⠀⠀⠀⠀⠉⠉⠉⠉⠙⠋⠛⠋⠋⠉⠉⠉⠉⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⣿⡆
-⠈⢿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣴⣿⣿⣿⣿⢿⣟⣿⣿⣿⠁
-⠀⠀⠙⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣦⣤⣄⣀⣀⣀⠀⠀⠀⠀⣀⣀⣀⣠⣤⣴⣶⣿⣿⣿⣿⣿⡿⣽⣿⣻⣯⠟⠁⠀
-⠀⠀⠀⠀⠉⠛⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣯⢿⣽⠾⠋⠁⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠉⠛⠻⠿⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠟⠛⠉⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠉⠙⠛⠛⠛⠛⠻⠻⠟⠛⠛⠛⠛⠛⠋⠉⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀`;
-
-const lines = [
-  'SpookyMcGee.com v1.4',
-  '',
-  'Booting into the stitched dimension...',
-  'LOADING_PROFILE_GLITCH',
-  'Accessing memory archive...',
-  '',
-  '[OK] — Connected to soul frequency',
-  '[OK] — Echo signal detected',
-  '',
-  'echo://space.sync.complete',
-  'resonance detected. you are known.',
-  'Spooky is watching.',
-  '',
-  '<a href="star.html?from=terminal" class="term-link">> ACCESS: /star.html — PROFILE ACTIVE</a>',
-  '<a href="nona.html" class="term-link">> ACCESS: /nona.html — PROFILE STABLE</a>',
-  '<a href="spooky.html?from=terminal" class="term-link">> ACCESS: /spooky.html — <span class="flicker">PROFILE CORRUPTED</span></a>',
-  '<a href="about.html" class="term-link">> ACCESS: /about.html — IDENTITY FILE</a>',
-  '',
-  '> logout initiated...',
-  ''
-];
-
-let lineIndex = 0;
-let charIndex = 0;
-let buffer = '';
-
-function typeLine() {
-  if (lineIndex < lines.length) {
-    const currentLine = lines[lineIndex];
-
-    if (currentLine === 'LOADING_PROFILE_GLITCH') {
-      playProfileGlitch();
-      return;
-    }
-
-    if (currentLine.includes('<a')) {
-      buffer += currentLine + '<br>';
-      terminal.innerHTML = buffer + '<span class="blinker">&nbsp;</span>';
-      lineIndex++;
-      setTimeout(typeLine, 250);
-      return;
-    }
-
-    if (charIndex <= currentLine.length) {
-      buffer += currentLine.charAt(charIndex);
-      charIndex++;
-      terminal.innerHTML = buffer + '<span class="blinker">&nbsp;</span>';
-      setTimeout(typeLine, 35);
-    } else {
-      buffer += '<br>';
-      charIndex = 0;
-      lineIndex++;
-      setTimeout(typeLine, 250);
-    }
-  } else {
-    terminal.innerHTML = buffer;
-
-    const linkHack = document.getElementById('link-hack');
-    if (linkHack) linkHack.style.display = 'block';
-  }
-}
-
-function playProfileGlitch() {
-  const glitchLines = [
-    '> Loading user profile ███_███e',
-    '> Loading user profile McGee.exe.brkn',
-    '> Loading user profile NULL_PARENT_MCGΞΞ',
-    '> Loading user profile sp001ky::MCGE3',
-    '> Loading user profile ORPHANED THREAD',
-    '> Loading user profile McGee'
+window.addEventListener('DOMContentLoaded', () => {
+  const gifList = [
+    'images/NothingandNowhere.gif',
+    'images/spookyliveaction.gif',
+    'images/Star2.gif',
+    'images/Nona.gif'
   ];
 
-  let index = 0;
+  const gifDurations = [4000, 4000, 4000, 4000]; // ms per gif
 
-  function showNext() {
-    if (index < glitchLines.length) {
-      terminal.innerHTML = buffer + glitchLines[index] + '<br><span class="blinker">&nbsp;</span>';
-      index++;
-      setTimeout(showNext, 450);
+  const gifElement = document.getElementById('stitch-gif');
+  const intro = document.getElementById('intro-overlay');
+  const main = document.getElementById('main-site');
+
+  let current = 0;
+
+  function playNextGif() {
+    if (!gifElement || !intro || !main) {
+      console.error('Missing elements:', { gifElement, intro, main });
+      return;
+    }
+
+    if (current < gifList.length) {
+      gifElement.src = gifList[current];
+      setTimeout(() => {
+        current++;
+        playNextGif();
+      }, gifDurations[current]);
     } else {
-      buffer += glitchLines[glitchLines.length - 1] + '<br>';
-      buffer += '> ALERT: Detected alternate instances of [spookymcgee]<br>';
-      buffer += '> Verifying soul signature...<br>';
-      buffer += '> No match found.<br>';
-      buffer += '> Echoes confirmed: shallow, disconnected, non-original.<br>';
-      buffer += '> Proceeding with core McGee.<br>';
-      terminal.innerHTML = buffer + '<span class="blinker">&nbsp;</span>';
-      lineIndex++;
-      setTimeout(typeLine, 400);
+      intro.style.opacity = '0';
+      setTimeout(() => {
+        intro.style.display = 'none';
+        document.body.classList.add('show-page');
+        main.classList.add('show');
+      }, 1000); // Match CSS transition duration
     }
   }
 
-  showNext();
-}
-
-if (!sessionStorage.getItem('bootedOnce')) {
-  typeLine();
-  sessionStorage.setItem('bootedOnce', 'true');
-} else {
-  showFullyBootedTerminal();
-}
-function showFullyBootedTerminal() {
-  buffer = `
-    SpookyMcGee.com v1.4<br>
-    > Welcome back, same soul thread detected.<br>
-    [OK] — Connected to soul frequency<br>
-    [OK] — Echo signal detected<br>
-    <br>
-    echo://space.sync.complete<br>
-    resonance detected. you are known.<br>
-    Spooky is watching.<br>
-    <br>
-    <a href="star.html" class="term-link">> ACCESS: /star.html — PROFILE ACTIVE</a><br>
-    <a href="nona.html" class="term-link">> ACCESS: /nona.html — PROFILE STABLE</a><br>
-    <a href="spooky.html" class="term-link">> ACCESS: /spooky.html — <span class="flicker">PROFILE CORRUPTED</span></a><br>
-    <a href="about.html" class="term-link">> ACCESS: /about.html — IDENTITY FILE</a><br>
-    <br>
-    > logout initiated...
-  `;
-
-  terminal.innerHTML = buffer + '<span class="blinker">&nbsp;</span>';
-}
+  playNextGif();
+});
