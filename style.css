@@ -109,11 +109,12 @@ body {
   left: -100%;
   width: 300%;
   height: 300%;
-  background-image: url("images/black-noise.png"); /* or noise.png */
+ background-image: url('/images/black-noise.png');
   background-size: cover;
   opacity: 0.15;
   pointer-events: none;
   z-index: 9999;
+  pointer-events: none;
   animation: fuzzy-drift 0.4s linear infinite alternate;
 }
 
