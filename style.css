@@ -103,3 +103,25 @@ body {
   white-space: normal;
   overflow-wrap: break-word;
 }
+.fuzzy-overlay {
+  position: fixed;
+  top: -100%;
+  left: -100%;
+  width: 300%;
+  height: 300%;
+  background-image: url("images/black-noise.png"); /* or noise.png */
+  background-size: cover;
+  opacity: 0.15;
+  pointer-events: none;
+  z-index: 9999;
+  animation: fuzzy-drift 0.4s linear infinite alternate;
+}
+
+@keyframes fuzzy-drift {
+  from {
+    transform: translateX(-5%) translateY(-5%);
+  }
+  to {
+    transform: translateX(5%) translateY(5%);
+  }
+}
