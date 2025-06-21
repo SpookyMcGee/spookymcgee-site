@@ -126,3 +126,6 @@ body {
     transform: translateX(5%) translateY(5%);
   }
 }
+.fuzzy-overlay {
+  animation-delay: 1s; /* Wait for the script to chill */
+}
