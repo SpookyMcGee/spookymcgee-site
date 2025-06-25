@@ -6,6 +6,7 @@
   <title>The McGee Files</title>
   <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
   <style>
+    
     :root {
       --crt-red: rgb(218, 49, 49);
       --crt-green: rgb(112, 159, 115);
@@ -159,20 +160,37 @@
     .lore-panel li a:hover {
       text-shadow: 0 0 10px #00ffee, 0 0 25px #00ffff;
     }
-  </style>
+    .fuzzy-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+  background-image: url("images/television-static.gif");
+  background-repeat: repeat;
+  background-size: cover;
+  opacity: 0.15; /* Adjust this for visual comfort */
+}
+ </style>
 </head>
 <body>
-  
   <div class="crt-background">
+
+    <!-- 🔮 Fuzzy Overlay GIF -->
+    <div class="fuzzy-overlay"></div>
+
+    <!-- 🧠 Content Layer -->
     <div class="content-layer">
       <main class="crt-wrapper">
+
         <!-- 🎥 GIF Panel -->
         <div class="gif-panel">
           <img src="images/mcgees.gif" alt="McGee Family Lore Reel">
         </div>
+
         <!-- 📚 Lore Box Panel -->
-           <div class="fuzzy-overlay"></div>
-           
         <div class="lore-panel">
           <h2>📺 The McGee Files</h2>
           <p>You're not supposed to be here. But since you are, take a look around.</p>
@@ -181,11 +199,14 @@
             <li><a href="Star.html">🦋 Star McGee</a></li>
             <li><a href="Nona.html">🍂 Nona McGee</a></li>
             <li><a href="terminal.html">📼 Old Terminal</a></li>
-           <li> <a href="grumplefluff.html">📜 Grumplefluff</a></li>
-          <li><a href="existence.html">🌌 Existence</a></li>
+            <li><a href="grumplefluff.html">📜 Grumplefluff</a></li>
+            <li><a href="existence.html">🌌 Existence</a></li>
           </ul>
         </div>
-        
+
       </main>
+    </div> <!-- End content-layer -->
+
+  </div> <!-- End crt-background -->
 </body>
 </html>
