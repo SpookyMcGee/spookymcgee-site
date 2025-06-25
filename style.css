@@ -147,15 +147,10 @@ body.show-page {
     gap: 1rem;
   }
 
-  .gif-panel {
+  .gif-panel,
+  .lore-panel {
     width: 90%;
     max-width: none;
-  }
-
-  .lore-panel {
-    width: 100%;
-    padding: 1rem;
-    font-size: 1rem;
   }
 
   .lore-panel h2 {
@@ -167,7 +162,15 @@ body.show-page {
     font-size: 1rem;
   }
 
-  body {
-    overflow-y: auto;
+  .gif-panel img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
   }
+}
+
+
+html, body {
+  overflow-x: hidden;
+  overflow-y: auto;
 }
