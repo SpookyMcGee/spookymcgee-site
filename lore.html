@@ -26,6 +26,11 @@
       height: 100%;
       overflow: hidden;
     }
+    html, body {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
 
     .crt-background {
       position: relative;
@@ -173,6 +178,35 @@
   background-size: cover;
   opacity: 0.15; /* Adjust this for visual comfort */
 }
+@media (max-width: 768px) {
+  .crt-wrapper {
+    flex-direction: column;
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .gif-panel,
+  .lore-panel {
+    width: 90%;
+    max-width: none;
+  }
+
+  .lore-panel h2 {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  .lore-panel li a {
+    font-size: 1rem;
+  }
+
+  .gif-panel img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+}
+
  </style>
 </head>
 <body>
