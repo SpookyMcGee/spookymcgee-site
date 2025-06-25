@@ -140,3 +140,34 @@ body.show-page {
   height: 100%;
   object-fit: cover;
 }
+@media (max-width: 768px) {
+  .crt-wrapper {
+    flex-direction: column;
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .gif-panel {
+    width: 90%;
+    max-width: none;
+  }
+
+  .lore-panel {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1rem;
+  }
+
+  .lore-panel h2 {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  .lore-panel li a {
+    font-size: 1rem;
+  }
+
+  body {
+    overflow-y: auto;
+  }
+}
