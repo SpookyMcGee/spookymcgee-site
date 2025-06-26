@@ -1,100 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Spooky Terminal 2.0 [Test]</title>
-  <link rel="stylesheet" href="terminal2.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SpookyMcGee Forest Test</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+
+  <style>
+    .forest {
+      background: url("images/violetforest.png") no-repeat center bottom;
+      background-size: cover;
+      background-color: purple; /* For testing fallback */
+      height: 100vh;
+      width: 100%;
+      border: 5px solid lime;
+    }
+
+    .roots {
+      background: url("images/roots.png") no-repeat center top;
+      background-size: cover;
+      min-height: 100vh;
+      width: 100%;
+      padding: 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .gradient-transition {
+      height: 60px;
+      background: linear-gradient(to bottom, transparent, #0a0a0a);
+    }
+  </style>
 </head>
+
 <body>
-  <div id="boot-screen">
-    <p>Initializing echo... Accessing memory...</p>
-  </div>
+  <div class="gradient-transition"></div>
 
-  <div id="main-room" class="hidden">
-    <video id="overlay-noise" autoplay loop muted>
-      <source src="images/overlay-noise.webm" type="video/webm">
-    </video>
-    <audio id="ambient-loop" src="audio/ambient.ogg" loop autoplay></audio>
+  <!-- 🌲 Forest intro -->
+  <!-- Everything starts here... -->
+  <section class="forest">
+    <!-- You could place logo/text here if needed -->
+  </section>
 
-    <div class="click-zone" data-room="echo-room"></div>
-    <div class="click-zone" data-room="library"></div>
-  </div>
-
-  <script src="terminal2.js"></script>
+  <!-- 🌿 Root lore area -->
+  <!-- Deep beneath the surface... -->
+  <section class="roots">
+    <!-- Lore content will go here -->
+  </section>
 </body>
-<div id="intro-sequence">
-  <img src="images/symbol.png" id="intro-symbol" alt="Unlock Sigil" />
-</div>
-
-<div id="main-room" class="hidden">
-  <!-- Your terminal layout will go here -->
-  <video id="overlay-noise" autoplay loop muted>
-    <source src="images/overlay-noise.webm" type="video/webm">
-  </video>
-</div>
-<style>
-    #intro-sequence {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100vw; height: 100vh;
-  background: black;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 10;
-}
-
-#intro-symbol {
-  width: 120px;
-  height: 120px;
-  opacity: 0;
-  transform: rotate(0deg) scale(1);
-  animation: fadeInSpin 1.5s ease forwards, spinLoop 6s linear infinite;
-}
-
-@keyframes fadeInSpin {
-  to {
-    opacity: 1;
-    transform: rotate(0deg) scale(1);
-  }
-}
-
-@keyframes spinLoop {
-  0%   { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-.fade-out-symbol {
-  animation: driftUp 2s ease forwards;
-}
-
-@keyframes driftUp {
-  to {
-    opacity: 0;
-    transform: translateY(-200px) scale(0.8) rotate(720deg);
-  }
-}
-</style>
-<script>
-    window.addEventListener("DOMContentLoaded", () => {
-  const intro = document.getElementById("intro-sequence");
-  const symbol = document.getElementById("intro-symbol");
-  const main = document.getElementById("main-room");
-
-  // After a few seconds, trigger unlock drift
-  setTimeout(() => {
-    symbol.classList.add("fade-out-symbol");
-
-    setTimeout(() => {
-      intro.classList.add("hidden");
-      main.classList.remove("hidden");
-
-      // Optional: fade in ambient loop
-      const ambient = document.getElementById("ambient-loop");
-      if (ambient) ambient.volume = 0.2;
-
-    }, 2000); // matches driftUp animation
-  }, 3500); // symbol spins for ~3.5 sec before drifting
-});
-</script>
 </html>
