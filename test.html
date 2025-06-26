@@ -4,51 +4,113 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SpookyMcGee Forest Test</title>
-  <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
-
   <style>
+    
+    body {
+      margin: 0;
+      background: black;
+      color: white;
+      font-family: 'VT323', monospace;
+    }
+    
+
     .forest {
-      background: url("images/violetforest.png") no-repeat center bottom;
+      background-image: url("images/violet forest 2.png");
+      background-repeat: no-repeat;
+      background-position: center center;
       background-size: cover;
-      background-color: purple; /* For testing fallback */
+      background-color: #000; /* Clean black */
       height: 100vh;
       width: 100%;
-      border: 5px solid lime;
-    }
-
-    .roots {
-      background: url("images/roots.png") no-repeat center top;
-      background-size: cover;
-      min-height: 100vh;
-      width: 100%;
-      padding: 2rem;
+       /* for visibility */
       display: flex;
       justify-content: center;
       align-items: center;
-      flex-direction: column;
     }
+    @media (max-width: 768px) {
+  .forest, .roots {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-color: #000; /* fallback color */
+  }
+}
+
+
+    h1 {
+      background: rgba(0, 0, 0, 0.6);
+      padding: 1rem 2rem;
+      border-radius: 8px;
+    }
+    .forest {
+  position: relative;
+  z-index: 1;
+}
+
+    .fuzzy-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+  background-image: url("images/television-static.gif");
+  background-repeat: repeat;
+  background-size: cover;
+  opacity: 0.15;
+}
+.roots {
+  background: url("images/roots.png") no-repeat center top;
+  background-size: cover;
+  min-height: 100vh;
+  width: 100%;
+  padding: 4rem 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  z-index: 2;
+}
+
+.roots-content {
+  background: rgba(0, 0, 0, 0.6);
+  padding: 2rem;
+  border-radius: 1rem;
+  text-align: center;
+  max-width: 600px;
+  color: #ffffff;
+  text-shadow: 0 0 4px #00ffee;
+}
 
     .gradient-transition {
-      height: 60px;
-      background: linear-gradient(to bottom, transparent, #0a0a0a);
-    }
+  height: 60px;
+  background: linear-gradient(to bottom, transparent, #000000);
+}
+
   </style>
 </head>
-
 <body>
-  <div class="gradient-transition"></div>
+<!-- 🌫️ Static overlay -->
+<div class="fuzzy-overlay"></div>
 
-  <!-- 🌲 Forest intro -->
   <!-- Everything starts here... -->
   <section class="forest">
-    <!-- You could place logo/text here if needed -->
-  </section>
+    <h1></h1>
+    <!-- 🌫️ Transition effect -->
+<div class="gradient-transition"></div>
 
-  <!-- 🌿 Root lore area -->
-  <!-- Deep beneath the surface... -->
-  <section class="roots">
-    <!-- Lore content will go here -->
   </section>
+<!-- 🌿 Root lore area -->
+<!-- Deep beneath the surface... -->
+<section class="roots">
+  <div class="roots-content">
+    <h2>🕳️ Beneath the Forest</h2>
+    <p>The signals hum beneath the soil. Forgotten names. Broken screens. The echoes begin here.</p>
+  </div>
+</section>
+
 </body>
 </html>
