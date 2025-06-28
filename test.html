@@ -2,9 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SpookyMcGee Forest Test</title>
-  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Spooky McGee Scroll</title>
   <style>
     * {
       margin: 0;
@@ -12,44 +11,131 @@
       box-sizing: border-box;
     }
 
-    body {
+    html, body {
       background: black;
-      font-family: 'VT323', monospace;
-      color: white;
+      font-family: monospace;
+      overflow-x: hidden;
     }
 
-    section {
-      width: 100%;
-      background-size: contain;
-      background-repeat: no-repeat;
-      background-position: top center;
-      height: 100vh; /* Adjust based on your design */
+   .scene-container {
+  position: relative;
+  width: 100%;
+  height: 300vh; /* Matches image height */
+}
+
+
+.layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; /* Fills entire .scene-container */
+  background-size: cover;
+  background-position: top;
+  background-repeat: no-repeat;
+  pointer-events: none;
+}
+
+
+
+    .bg {
+      top: 0;
+      height: 300vh;
+      background-image: url('images/spookystarspointing.png');
+      z-index: 1;
     }
 
-    .forest img, .roots img {
-      display: block;
-      width: 100%;
-      height: auto;
+    .stars-layer {
+      top: 0;
+      height: 300vh;
+      z-index: 2;
     }
 
-    .forest {
-      background-image: url("images/familyinforest.png");
-      aspect-ratio: 9 / 16;
+canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  pointer-events: none;
+}
+
+
+    .fg {
+      top: 0;
+      height: 300vh;
+      background-image: url('images/spookystarspointing2.png');
+      z-index: 4;
     }
 
-    .roots {
-      background-image: url("images/roots.png");
-      aspect-ratio: 9 / 8;
+    .scroll-filler {
+      position: relative;
+      top: 100vh;
+      height: 300vh;
+      z-index: 5;
     }
   </style>
 </head>
 <body>
-  <section class="scene forest">
-    <img src="images/familyinforest.png" alt="Forest" />
-  </section>
 
-  <section class="scene roots">
-    <img src="images/roots.png" alt="Roots" />
-  </section>
+  <div class="scene-container">
+    <div class="layer bg"></div>
+    <div class="layer stars-layer">
+      <canvas id="starCanvas"></canvas>
+    </div>
+    <div class="layer fg"></div>
+
+    <!-- Scroll filler pushes the user downward to reveal more of the image layers -->
+    <div class="scroll-filler"></div>
+  </div>
+
+  <script>
+    const canvas = document.getElementById("starCanvas");
+    const ctx = canvas.getContext("2d");
+
+    const numStars = 100;
+    const stars = [];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      createStars();
+    }
+
+    function createStars() {
+      stars.length = 0;
+      for (let i = 0; i < numStars; i++) {
+        stars.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          radius: Math.random() * 1.5 + 0.5,
+          alpha: Math.random(),
+          delta: Math.random() * 0.02 + 0.005,
+        });
+      }
+    }
+
+    function animateStars() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let star of stars) {
+        star.alpha += star.delta;
+        if (star.alpha <= 0 || star.alpha >= 1) {
+          star.delta *= -1;
+        }
+
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255, 255, 255, ${star.alpha})`;
+        ctx.fill();
+      }
+      requestAnimationFrame(animateStars);
+    }
+
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+    animateStars();
+  </script>
+
 </body>
 </html>
