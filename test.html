@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Spooky McGee Scroll</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spooky McGee – You’re Not Supposed to Be Here</title>
   <style>
     * {
       margin: 0;
@@ -12,108 +12,81 @@
     }
 
     html, body {
-      background: black;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
       font-family: monospace;
-      overflow-x: hidden;
-    }
-
-   .scene-container {
-  position: relative;
-  width: 100%;
-  height: 300vh; /* Matches image height */
-}
-
-
-.layer {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%; /* Fills entire .scene-container */
-  background-size: cover;
-  background-position: top;
-  background-repeat: no-repeat;
-  pointer-events: none;
-}
-
-
-
-    .bg {
-      top: 0;
-      height: 300vh;
-      background-image: url('images/spookystarspointing.png');
-      z-index: 1;
-    }
-
-    .stars-layer {
-      top: 0;
-      height: 300vh;
-      z-index: 2;
-    }
-
-canvas {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 3;
-  pointer-events: none;
-}
-
-
-    .fg {
-      top: 0;
-      height: 300vh;
-      background-image: url('images/spookystarspointing2.png');
-      z-index: 4;
-    }
-
-    .scroll-filler {
+      background: black;
       position: relative;
-      top: 100vh;
-      height: 300vh;
-      z-index: 5;
+    }
+
+    body::before {
+      content: "";
+      background: url('images/spookystarspointing.png') no-repeat center center;
+      background-size: cover;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      width: 100vw;
+      z-index: 0;
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .floating-text {
+      position: fixed;
+      color: white;
+      font-size: 1.5rem;
+      opacity: 0;
+      z-index: 2;
+      pointer-events: none;
+      animation: fadeInOut 4s ease-in-out forwards;
+    }
+
+    @keyframes fadeInOut {
+      0% { opacity: 0; }
+      10% { opacity: 1; }
+      80% { opacity: 1; }
+      100% { opacity: 0; }
     }
   </style>
 </head>
 <body>
-
-  <div class="scene-container">
-    <div class="layer bg"></div>
-    <div class="layer stars-layer">
-      <canvas id="starCanvas"></canvas>
-    </div>
-    <div class="layer fg"></div>
-
-    <!-- Scroll filler pushes the user downward to reveal more of the image layers -->
-    <div class="scroll-filler"></div>
-  </div>
+  <canvas id="starCanvas"></canvas>
 
   <script>
+    // 🌟 Twinkling Stars
     const canvas = document.getElementById("starCanvas");
     const ctx = canvas.getContext("2d");
-
-    const numStars = 100;
-    const stars = [];
 
     function resizeCanvas() {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
-      createStars();
     }
 
-    function createStars() {
-      stars.length = 0;
-      for (let i = 0; i < numStars; i++) {
-        stars.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          radius: Math.random() * 1.5 + 0.5,
-          alpha: Math.random(),
-          delta: Math.random() * 0.02 + 0.005,
-        });
-      }
+    window.addEventListener("resize", resizeCanvas);
+    resizeCanvas();
+
+    const numStars = 150;
+    const stars = [];
+
+    for (let i = 0; i < numStars; i++) {
+      stars.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        radius: Math.random() * 1.5 + 0.5,
+        alpha: Math.random(),
+        delta: Math.random() * 0.02 + 0.005,
+      });
     }
 
     function animateStars() {
@@ -123,7 +96,6 @@ canvas {
         if (star.alpha <= 0 || star.alpha >= 1) {
           star.delta *= -1;
         }
-
         ctx.beginPath();
         ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
         ctx.fillStyle = `rgba(255, 255, 255, ${star.alpha})`;
@@ -132,10 +104,45 @@ canvas {
       requestAnimationFrame(animateStars);
     }
 
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
     animateStars();
-  </script>
 
+    // 💬 Floating Text
+    const messages = [
+      "You're not supposed to be here.",
+      "Did you feel the echo too?",
+      "I remember the Nothing and Nowhere",
+      "Her eyes shined in the stars, so I named her after them",
+      "She sowed my heart back in",
+      "The ragdoll that lived",
+    ];
+
+    let msgIndex = 0;
+
+    function showNextMessage() {
+      const msg = document.createElement("div");
+      msg.classList.add("floating-text");
+      msg.textContent = messages[msgIndex];
+
+      // random position
+      const x = Math.random() * (window.innerWidth - 200);
+      const y = Math.random() * (window.innerHeight - 100);
+
+      msg.style.left = `${x}px`;
+      msg.style.top = `${y}px`;
+
+      document.body.appendChild(msg);
+
+      // clean up after animation ends
+      setTimeout(() => {
+        msg.remove();
+      }, 4000);
+
+      msgIndex = (msgIndex + 1) % messages.length;
+      setTimeout(showNextMessage, 3000);
+    }
+
+    // Delay first message a bit
+    setTimeout(showNextMessage, 1000);
+  </script>
 </body>
 </html>
