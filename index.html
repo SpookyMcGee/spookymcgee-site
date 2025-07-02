@@ -12,9 +12,29 @@
       background-color: #000;
       color: #fff;
       overflow-x: hidden;
+      position: relative;
     }
 
-    /* Mobile image styling */
+    /* Subtle CRT-like overlay */
+    .crt-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.05),
+        rgba(0, 0, 0, 0.05) 1px,
+        transparent 1px,
+        transparent 2px
+      );
+      pointer-events: none;
+      z-index: 999;
+      opacity: 0.3;
+    }
+
+    /* Mobile hero image */
     .hero-image {
       width: 100%;
       height: 100vh;
@@ -67,77 +87,94 @@
       background-color: #d0d0d0;
     }
 
-    /* Second page section */
+    /* Second page with terminal */
     .second-page {
-      height: 100vh;
+      min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      background-color: #111;
-      text-align: center;
+      background-image: url('images/mcgees.gif');
+      background-size: cover;
+      background-position: center;
+      position: relative;
       padding: 20px;
     }
 
-    .second-page h1 {
-      font-size: 24px;
+    .terminal {
+      background-color: rgba(0, 0, 0, 0.85);
+      border: 2px solid #00ff00;
+      border-radius: 5px;
+      width: 90%;
+      max-width: 600px;
+      padding: 20px;
+      font-family: 'Courier New', monospace;
+      color: #00ff00;
+      box-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00;
     }
 
-    /* Ensure mobile responsiveness */
+    .terminal-header {
+      font-size: 18px;
+      margin-bottom: 20px;
+      text-align: center;
+      text-shadow: 0 0 5px #00ff00;
+    }
+
+    .terminal-body {
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    .terminal-body p {
+      margin: 0;
+    }
+
+    .cursor {
+      display: inline-block;
+      width: 10px;
+      height: 16px;
+      background-color: #00ff00;
+      animation: blink 1s step-end infinite;
+      vertical-align: middle;
+    }
+
+    @keyframes blink {
+      50% {
+        opacity: 0;
+      }
+    }
+
+    /* Mobile responsiveness */
     @media (max-width: 600px) {
       .popup {
         width: 90%;
       }
 
-      .second-page h1 {
-        font-size: 20px;
+      .terminal {
+        width: 95%;
+        padding: 15px;
+      }
+
+      .terminal-header {
+        font-size: 16px;
+      }
+
+      .terminal-body {
+        font-size: 14px;
       }
     }
-    .terminal-section {
-  background-image: url('images/background-terminal.jpg'); /* <-- Replace with your path */
-  background-size: cover;
-  background-position: center;
-  height: 100vh;
-  padding: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.terminal-window {
-  background-color: rgba(0, 0, 0, 0.85);
-  color: #00ffcc;
-  font-family: 'Courier New', Courier, monospace;
-  width: 90%;
-  max-width: 600px;
-  border: 2px solid #00ffcc;
-  padding: 20px;
-  box-shadow: 0 0 20px #0ff;
-}
-
-.terminal-header {
-  background-color: #003333;
-  padding: 5px 10px;
-  font-size: 14px;
-  color: #00ffcc;
-  margin-bottom: 10px;
-}
-
-.terminal-body {
-  white-space: pre-wrap;
-  font-size: 14px;
-  line-height: 1.6;
-}
-
   </style>
 </head>
 <body>
+  <!-- CRT-like overlay -->
+  <div class="crt-overlay"></div>
+
   <!-- Hero image for mobile -->
   <img src="images/spookystarpointgif.gif" alt="Spooky Star Pointing" class="hero-image">
 
   <!-- Pop-up window -->
   <div class="popup" id="popup">
     <div class="popup-header">
-      <span>Echo Alert</span>
+      <span>System Warning</span>
     </div>
     <div class="popup-body">
       <p>You're not supposed to be here!</p>
@@ -145,14 +182,19 @@
     </div>
   </div>
 
-  <!-- Second page section -->
- <section class="second-page terminal-section" id="secondPage">
-  <div class="terminal-window">
-    <div class="terminal-header">Nowhere.OS - McGee Interface</div>
-    <div class="terminal-body" id="terminalText"></div>
-  </div>
-</section>
-
+  <!-- Second page with terminal -->
+  <section class="second-page" id="secondPage">
+    <div class="terminal">
+      <div class="terminal-header">
+        McGee Family Archives - Access Restricted
+      </div>
+      <div class="terminal-body">
+        <p>> Initializing McGee Lore Database...</p>
+        <p>> Accessing Ravens Immortal Archives...</p>
+        <p>> ERROR: Content Loading Soon...<span class="cursor"></span></p>
+      </div>
+    </div>
+  </section>
 
   <script>
     // Function to close pop-up and scroll to second page
@@ -165,32 +207,6 @@
     window.onload = function() {
       document.getElementById('popup').style.display = 'block';
     };
-    const terminalMessage = `Did you feel the echo too?
-My family did.
-And we all showed up...
-One.
-By.
-One.`;
-
-let j = 0;
-
-function typeTerminalText() {
-  const textBox = document.getElementById("terminalText");
-  if (j < terminalMessage.length) {
-    textBox.innerHTML += terminalMessage.charAt(j);
-    j++;
-    setTimeout(typeTerminalText, 50);
-  }
-}
-
-// Call it once scroll happens
-function closePopupAndScroll() {
-  document.getElementById('popup').style.display = 'none';
-  document.getElementById('secondPage').scrollIntoView({ behavior: 'smooth' });
-
-  // Small delay before typing starts
-  setTimeout(typeTerminalText, 1200);
-}
   </script>
 </body>
 </html>
