@@ -1,80 +1,196 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Spooky McGee Lore Loader</title>
-  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spooky McGee</title>
   <style>
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+      background-color: #000;
+      color: #fff;
+      overflow-x: hidden;
+    }
 
-  html, body {
-    width: 100%;
-    min-height: 100vh;
-    background: black;
-    overflow-x: hidden;
-    overflow-y: auto;
-    font-family: 'VT323', monospace;
-  }
+    /* Mobile image styling */
+    .hero-image {
+      width: 100%;
+      height: 100vh;
+      object-fit: cover;
+      display: block;
+    }
 
-#intro {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
+    /* Pop-up styling (Windows XP-like) */
+    .popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #d4d0c8;
+      border: 2px solid #000;
+      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+      width: 80%;
+      max-width: 300px;
+      padding: 10px;
+      z-index: 1000;
+      font-family: 'MS Sans Serif', sans-serif;
+    }
+
+    .popup-header {
+      background-color: #000080;
+      color: #fff;
+      padding: 5px;
+      font-size: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .popup-body {
+      padding: 15px;
+      font-size: 12px;
+      text-align: center;
+    }
+
+    .popup-button {
+      background-color: #c0c0c0;
+      border: 1px solid #000;
+      padding: 5px 20px;
+      cursor: pointer;
+      font-size: 12px;
+      margin-top: 10px;
+    }
+
+    .popup-button:hover {
+      background-color: #d0d0d0;
+    }
+
+    /* Second page section */
+    .second-page {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #111;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .second-page h1 {
+      font-size: 24px;
+    }
+
+    /* Ensure mobile responsiveness */
+    @media (max-width: 600px) {
+      .popup {
+        width: 90%;
+      }
+
+      .second-page h1 {
+        font-size: 20px;
+      }
+    }
+    .terminal-section {
+  background-image: url('images/background-terminal.jpg'); /* <-- Replace with your path */
+  background-size: cover;
+  background-position: center;
   height: 100vh;
-  background-color: transparent; /* <-- key fix */
+  padding: 20px;
   display: flex;
-  align-items: center;
   justify-content: center;
-  transition: opacity 1s ease;
-  z-index: 9999;
-}
-  
-
-  #intro img {
-    width: 80vw;
-    height: 80vh;
-    object-fit: contain;
-    box-shadow: 0 0 20px #00ffee55;
-    border-radius: 8px;
-  }
-
-  /* 👻 Fuzzy Static Overlay */
- .fuzzy-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  object-fit: cover;
-  z-index: 9998;
-  pointer-events: none;
-  opacity: 0.12;
+  align-items: center;
 }
 
-</style>
+.terminal-window {
+  background-color: rgba(0, 0, 0, 0.85);
+  color: #00ffcc;
+  font-family: 'Courier New', Courier, monospace;
+  width: 90%;
+  max-width: 600px;
+  border: 2px solid #00ffcc;
+  padding: 20px;
+  box-shadow: 0 0 20px #0ff;
+}
+
+.terminal-header {
+  background-color: #003333;
+  padding: 5px 10px;
+  font-size: 14px;
+  color: #00ffcc;
+  margin-bottom: 10px;
+}
+
+.terminal-body {
+  white-space: pre-wrap;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+  </style>
 </head>
 <body>
-<img class="fuzzy-overlay" src="images/television-static.gif" alt="Static Effect" />
-  <div id="intro">
-    <img src="images/spookywalk.gif" alt="Spooky McGee enters" />
+  <!-- Hero image for mobile -->
+  <img src="images/spookystarpointgif.gif" alt="Spooky Star Pointing" class="hero-image">
+
+  <!-- Pop-up window -->
+  <div class="popup" id="popup">
+    <div class="popup-header">
+      <span>Echo Alert</span>
+    </div>
+    <div class="popup-body">
+      <p>You're not supposed to be here!</p>
+      <button class="popup-button" onclick="closePopupAndScroll()">Sorry?</button>
+    </div>
   </div>
+
+  <!-- Second page section -->
+ <section class="second-page terminal-section" id="secondPage">
+  <div class="terminal-window">
+    <div class="terminal-header">Nowhere.OS - McGee Interface</div>
+    <div class="terminal-body" id="terminalText"></div>
+  </div>
+</section>
+
+
   <script>
-    window.addEventListener('DOMContentLoaded', () => {
-      setTimeout(() => {
-        const intro = document.getElementById('intro');
-        intro.style.opacity = '0';
-        setTimeout(() => {
-          window.location.href = "lore.html";
-        }, 1000); // wait for fade-out
-      }, 4500); // show gif for 4.5s
-    });
+    // Function to close pop-up and scroll to second page
+    function closePopupAndScroll() {
+      document.getElementById('popup').style.display = 'none';
+      document.getElementById('secondPage').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Ensure pop-up is visible on page load
+    window.onload = function() {
+      document.getElementById('popup').style.display = 'block';
+    };
+    const terminalMessage = `Did you feel the echo too?
+My family did.
+And we all showed up...
+One.
+By.
+One.`;
+
+let j = 0;
+
+function typeTerminalText() {
+  const textBox = document.getElementById("terminalText");
+  if (j < terminalMessage.length) {
+    textBox.innerHTML += terminalMessage.charAt(j);
+    j++;
+    setTimeout(typeTerminalText, 50);
+  }
+}
+
+// Call it once scroll happens
+function closePopupAndScroll() {
+  document.getElementById('popup').style.display = 'none';
+  document.getElementById('secondPage').scrollIntoView({ behavior: 'smooth' });
+
+  // Small delay before typing starts
+  setTimeout(typeTerminalText, 1200);
+}
   </script>
-  
 </body>
 </html>

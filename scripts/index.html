@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Spooky McGee Lore Loader</title>
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+  <style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html, body {
+    width: 100%;
+    min-height: 100vh;
+    background: black;
+    overflow-x: hidden;
+    overflow-y: auto;
+    font-family: 'VT323', monospace;
+  }
+
+#intro {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: transparent; /* <-- key fix */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 1s ease;
+  z-index: 9999;
+}
+  
+
+  #intro img {
+    width: 80vw;
+    height: 80vh;
+    object-fit: contain;
+    box-shadow: 0 0 20px #00ffee55;
+    border-radius: 8px;
+  }
+
+  /* 👻 Fuzzy Static Overlay */
+ .fuzzy-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: 9998;
+  pointer-events: none;
+  opacity: 0.12;
+}
+
+</style>
+</head>
+<body>
+<img class="fuzzy-overlay" src="images/television-static.gif" alt="Static Effect" />
+  <div id="intro">
+    <img src="images/spookywalk.gif" alt="Spooky McGee enters" />
+  </div>
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => {
+        const intro = document.getElementById('intro');
+        intro.style.opacity = '0';
+        setTimeout(() => {
+          window.location.href = "lore.html";
+        }, 1000); // wait for fade-out
+      }, 4500); // show gif for 4.5s
+    });
+  </script>
+  
+</body>
+</html>
