@@ -34,57 +34,54 @@
       opacity: 0.3;
     }
 
-    /* Mobile hero image */
-    .hero-image {
-      width: 100%;
-      height: 100vh;
-      object-fit: cover;
-      display: block;
-    }
-
-    /* Pop-up styling (Windows XP-like) */
-    .popup {
-      position: fixed;
+    /* Typewriter text container (confined to first page) */
+    .typewriter-text {
+      position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      background-color: #d4d0c8;
-      border: 2px solid #000;
-      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-      width: 80%;
-      max-width: 300px;
-      padding: 10px;
-      z-index: 1000;
-      font-family: 'MS Sans Serif', sans-serif;
-    }
-
-    .popup-header {
-      background-color: #000080;
-      color: #fff;
-      padding: 5px;
-      font-size: 14px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .popup-body {
-      padding: 15px;
-      font-size: 12px;
+      width: 100%;
       text-align: center;
+      z-index: 1000;
+      font-family: 'Courier New', monospace;
+      font-size: 18px;
+      color: #ffffff;
+      text-shadow: 0 0 5px #ff4500;
+      pointer-events: none; /* Prevent interaction with text */
     }
 
-    .popup-button {
-      background-color: #c0c0c0;
-      border: 1px solid #000;
-      padding: 5px 20px;
-      cursor: pointer;
-      font-size: 12px;
-      margin-top: 10px;
+    .typewriter-text span {
+      display: inline-block;
+      white-space: nowrap;
     }
 
-    .popup-button:hover {
-      background-color: #d0d0d0;
+    .cursor {
+      display: inline-block;
+      width: 10px;
+      height: 16px;
+      background-color: #ff4500;
+      vertical-align: middle;
+      animation: blink 1s step-end infinite;
+    }
+
+    @keyframes blink {
+      50% {
+        opacity: 0;
+      }
+    }
+
+    /* First page (hero image) container */
+    .first-page {
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .hero-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
 
     /* Second page with terminal */
@@ -128,25 +125,16 @@
       margin: 0;
     }
 
-    .cursor {
-      display: inline-block;
+    .terminal .cursor {
       width: 10px;
       height: 16px;
       background-color: #00ff00;
-      animation: blink 1s step-end infinite;
-      vertical-align: middle;
-    }
-
-    @keyframes blink {
-      50% {
-        opacity: 0;
-      }
     }
 
     /* Mobile responsiveness */
     @media (max-width: 600px) {
-      .popup {
-        width: 90%;
+      .typewriter-text {
+        font-size: 16px;
       }
 
       .terminal {
@@ -168,18 +156,12 @@
   <!-- CRT-like overlay -->
   <div class="crt-overlay"></div>
 
-  <!-- Hero image for mobile -->
-  <img src="images/spookystarpointgif.gif" alt="Spooky Star Pointing" class="hero-image">
-
-  <!-- Pop-up window -->
-  <div class="popup" id="popup">
-    <div class="popup-header">
-      <span>System Warning</span>
+  <!-- First page with hero image and typewriter text -->
+  <div class="first-page">
+    <div class="typewriter-text">
+      <span id="typewriter"></span><span class="cursor"></span>
     </div>
-    <div class="popup-body">
-      <p>You're not supposed to be here!</p>
-      <button class="popup-button" onclick="closePopupAndScroll()">Sorry?</button>
-    </div>
+    <img src="images/spookystarpointgif.gif" alt="Spooky Star Pointing" class="hero-image">
   </div>
 
   <!-- Second page with terminal -->
@@ -197,16 +179,28 @@
   </section>
 
   <script>
-    // Function to close pop-up and scroll to second page
-    function closePopupAndScroll() {
-      document.getElementById('popup').style.display = 'none';
-      document.getElementById('secondPage').scrollIntoView({ behavior: 'smooth' });
+    // Typewriter effect
+    const text = "You're not supposed to be here...";
+    const typewriterElement = document.getElementById('typewriter');
+    let index = 0;
+
+    function type() {
+      if (index < text.length) {
+        typewriterElement.textContent += text.charAt(index);
+        index++;
+        setTimeout(type, 100); // Adjust speed (100ms per character)
+      }
     }
 
-    // Ensure pop-up is visible on page load
+    // Start typewriter effect on page load
     window.onload = function() {
-      document.getElementById('popup').style.display = 'block';
+      type();
     };
+
+    // Scroll to second page when clicking the hero image
+    document.querySelector('.hero-image').addEventListener('click', function() {
+      document.getElementById('secondPage').scrollIntoView({ behavior: 'smooth' });
+    });
   </script>
 </body>
 </html>
