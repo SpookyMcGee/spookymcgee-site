@@ -84,6 +84,21 @@
       display: block;
     }
 
+    /* Default to mobile GIF */
+    .hero-image {
+      content: url('images/spookystarpointgif.gif');
+    }
+
+    /* Switch to desktop PNG at 1024px and above */
+    @media (min-width: 1024px) {
+      .hero-image {
+        content: url('images/spookystarpointdesktop.png');
+        max-width: 1920px;
+        height: auto;
+        object-fit: cover;
+      }
+    }
+
     /* Second page with terminal */
     .second-page {
       min-height: 100vh;
