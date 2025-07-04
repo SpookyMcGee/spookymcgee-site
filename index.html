@@ -13,6 +13,7 @@
       color: #fff;
       overflow-x: hidden;
       position: relative;
+      min-height: 100vh;
     }
 
     /* Subtle CRT-like overlay */
@@ -34,7 +35,7 @@
       opacity: 0.3;
     }
 
-    /* Typewriter text container (confined to first page) */
+    /* Typewriter text container */
     .typewriter-text {
       position: absolute;
       top: 50%;
@@ -42,12 +43,12 @@
       transform: translate(-50%, -50%);
       width: 100%;
       text-align: center;
-      z-index: 1000;
+      z-index: 1001;
       font-family: 'Courier New', monospace;
       font-size: 18px;
-      color: #ffffff;
-      text-shadow: 0 0 5px #b709d2;
-      pointer-events: none; /* Prevent interaction with text */
+      color: #ff4500;
+      text-shadow: 0 0 5px #ff4500;
+      pointer-events: none;
     }
 
     .typewriter-text span {
@@ -59,7 +60,7 @@
       display: inline-block;
       width: 10px;
       height: 16px;
-      background-color: #7700ff;
+      background-color: #ff4500;
       vertical-align: middle;
       animation: blink 1s step-end infinite;
     }
@@ -73,96 +74,29 @@
     /* First page (hero image) container */
     .first-page {
       position: relative;
-      height: 100vh;
-      overflow: hidden;
+      min-height: 100vh;
+      overflow: visible;
     }
 
     .hero-image {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
+      height: auto;
       display: block;
+      object-fit: contain;
+      max-width: 100%;
     }
 
-    /* Default to mobile GIF */
-    .hero-image {
-      content: url('images/spookystarpointgif.gif');
-    }
-
-    /* Switch to desktop PNG at 1024px and above */
+    /* Desktop-specific styling */
     @media (min-width: 1024px) {
       .hero-image {
-        content: url('images/spookystarpointdesktop.png');
-        max-width: 1920px;
-        height: auto;
-        object-fit: cover;
+        max-width: 1536px;
       }
-    }
-
-    /* Second page with terminal */
-    .second-page {
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-image: url('images/mcgees.gif');
-      background-size: cover;
-      background-position: center;
-      position: relative;
-      padding: 20px;
-    }
-
-    .terminal {
-      background-color: rgba(0, 0, 0, 0.85);
-      border: 2px solid #00ff00;
-      border-radius: 5px;
-      width: 90%;
-      max-width: 600px;
-      padding: 20px;
-      font-family: 'Courier New', monospace;
-      color: #00ff00;
-      box-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00;
-    }
-
-    .terminal-header {
-      font-size: 18px;
-      margin-bottom: 20px;
-      text-align: center;
-      text-shadow: 0 0 5px #00ff00;
-    }
-
-    .terminal-body {
-      font-size: 16px;
-      line-height: 1.5;
-    }
-
-    .terminal-body p {
-      margin: 0;
-    }
-
-    .terminal .cursor {
-      width: 10px;
-      height: 16px;
-      background-color: #00ff00;
     }
 
     /* Mobile responsiveness */
     @media (max-width: 600px) {
       .typewriter-text {
         font-size: 16px;
-      }
-
-      .terminal {
-        width: 95%;
-        padding: 15px;
-      }
-
-      .terminal-header {
-        font-size: 16px;
-      }
-
-      .terminal-body {
-        font-size: 14px;
       }
     }
   </style>
@@ -176,22 +110,11 @@
     <div class="typewriter-text">
       <span id="typewriter"></span><span class="cursor"></span>
     </div>
-    <img src="images/spookystarpointgif.gif" alt="Spooky Star Pointing" class="hero-image">
+    <picture>
+      <source media="(min-width: 1024px)" srcset="images/starpoint.png">
+      <img src="images/spookystarpointgif.gif" alt="Spooky Star Pointing" class="hero-image">
+    </picture>
   </div>
-
-  <!-- Second page with terminal -->
-  <section class="second-page" id="secondPage">
-    <div class="terminal">
-      <div class="terminal-header">
-        McGee Family Archives - Access Restricted
-      </div>
-      <div class="terminal-body">
-        <p>> Initializing McGee Lore Database...</p>
-        <p>> Accessing Ravens Immortal Archives...</p>
-        <p>> ERROR: Content Loading Soon...<span class="cursor"></span></p>
-      </div>
-    </div>
-  </section>
 
   <script>
     // Typewriter effect
@@ -211,11 +134,6 @@
     window.onload = function() {
       type();
     };
-
-    // Scroll to second page when clicking the hero image
-    document.querySelector('.hero-image').addEventListener('click', function() {
-      document.getElementById('secondPage').scrollIntoView({ behavior: 'smooth' });
-    });
   </script>
 </body>
 </html>
