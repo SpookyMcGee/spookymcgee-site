@@ -117,16 +117,32 @@
       transform: scaleX(1);
       transform-origin: left;
     }
+    /* Static overlay for the background */
+    .static-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background: url('images/television-static.gif') repeat;
+  background-size: cover;
+  opacity: 0.06;
+  pointer-events: none;
+  z-index: 0;
+}
+
   </style>
 </head>
 <body>
+<!-- Static-->
+<div class="static-overlay"></div>
 
   <!-- Background -->
   <div class="background"></div>
 
   <!-- Overlayed content -->
   <div class="content">
-    <div class="fade-text">Do you remember what it meant to be sewn?</div>
+    <div class="fade-text">I am, Spooky McGee</div>
 
     <div class="nav-links">
       <a href="/spooky.html">the tophat</a>
