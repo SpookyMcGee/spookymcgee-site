@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>the tophat</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=IM+Fell+English+SC&display=swap" rel="stylesheet">
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      width: 100%;
+      font-family: 'Cormorant Garamond', serif;
+      background: #000;
+      color: #e5e0da;
+      scroll-behavior: smooth;
+    }
+
+    /* Section wrapper */
+    .section {
+      position: relative;
+      min-height: 100vh;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4rem 2rem;
+    }
+
+    /* Text container */
+    .text-box {
+      background: rgba(0, 0, 0, 0.65);
+      padding: 2rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      max-width: 800px;
+      font-size: 1.25rem;
+      line-height: 1.8;
+      backdrop-filter: blur(4px);
+      text-shadow: 0 0 4px rgba(0, 0, 0, 0.6);
+    }
+
+    .text-box em {
+      font-family: 'IM Fell English SC', serif;
+      font-style: normal;
+      font-size: 1.5rem;
+      color: #fffbe6;
+    }
+
+    .text-box strong {
+      display: block;
+      margin-top: 1rem;
+      font-weight: 600;
+      font-size: 1.3rem;
+      color: #f6e6c1;
+    }
+
+    @media (max-width: 600px) {
+      .text-box {
+        font-size: 1rem;
+        padding: 1.5rem;
+      }
+    }
+
+    /* Background image defaults (mobile) */
+    .section-1 {
+      background-image: url('images/tophat/shadowandmaps.png');
+    }
+
+    .section-2 {
+      background-image: url('images/tophat/another-image.png');
+    }
+
+    /* Desktop background overrides */
+    @media (min-width: 768px) {
+      .section-1 {
+        background-image: url('images/tophat/shadowandmaps.png');
+      }
+
+      .section-2 {
+        background-image: url('images/tophat/another-image.png');
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Section 1 -->
+  <div class="section section-1">
+    <div class="text-box">
+      <em>Interviewer:</em> What's your name?<br>
+      <strong>Spooky:</strong> You know, I forgot. But they call me Spooky McGee.
+    </div>
+  </div>
+
+  <!-- Section 2 -->
+  <div class="section section-2">
+    <div class="text-box">
+      <em>Interviewer:</em> Where were you born?<br>
+      <strong>Spooky:</strong> In a lighthouse, under a storm. Or maybe it was a carnival. Both feel true.
+    </div>
+  </div>
+
+  <!-- Keep duplicating these sections with new classes and image paths -->
+
+</body>
+</html>
