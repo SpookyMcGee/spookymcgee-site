@@ -3,137 +3,147 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Spooky McGee</title>
+  <title>Spooky McGee - Dark Academia</title>
   <style>
     body {
       margin: 0;
       padding: 0;
-      font-family: 'Arial', sans-serif;
-      background-color: #000;
-      color: #fff;
+      font-family: 'Georgia', serif;
+      background-color: #1a1a1a;
+      color: #d3c9b8;
       overflow-x: hidden;
-      position: relative;
-      min-height: 100vh;
+      line-height: 1.6;
     }
 
-    /* Subtle CRT-like overlay */
-    .crt-overlay {
+    /* Subtle parchment texture overlay */
+    .parchment-overlay {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: repeating-linear-gradient(
-        0deg,
-        rgba(0, 0, 0, 0.05),
-        rgba(0, 0, 0, 0.05) 1px,
-        transparent 1px,
-        transparent 2px
-      );
-      pointer-events: none;
-      z-index: 999;
-      opacity: 0.3;
-    }
-
-    /* Typewriter text container */
-    .typewriter-text {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 100%;
-      text-align: center;
-      z-index: 1001;
-      font-family: 'Courier New', monospace;
-      font-size: 18px;
-      color: #ff4500;
-      text-shadow: 0 0 5px #ff4500;
+      background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAJElEQVQIW2NkYGD4z8DAwMgAB//+AD0jESEAEiRQRBZkOQ7/3Q3+1E4IAtARQBXuQAAAAAElFTkSuQmCC') repeat;
+      opacity: 0.05;
+      z-index: 0;
       pointer-events: none;
     }
 
-    .typewriter-text span {
-      display: inline-block;
-      white-space: nowrap;
-    }
-
-    .cursor {
-      display: inline-block;
-      width: 10px;
-      height: 16px;
-      background-color: #ff4500;
-      vertical-align: middle;
-      animation: blink 1s step-end infinite;
-    }
-
-    @keyframes blink {
-      50% {
-        opacity: 0;
-      }
-    }
-
-    /* First page (hero image) container */
-    .first-page {
+    /* Page sections */
+    .page-section {
       position: relative;
       min-height: 100vh;
-      overflow: visible;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
     }
 
-    .hero-image {
+    .page-image {
       width: 100%;
       height: auto;
-      display: block;
-      object-fit: contain;
       max-width: 100%;
+      object-fit: contain;
+      z-index: 1;
     }
 
-    /* Desktop-specific styling */
-    @media (min-width: 1024px) {
-      .hero-image {
-        max-width: 1536px;
-      }
+    /* First page */
+    #first-page {
+      background-color: #2c2c2c;
+    }
+
+    /* Second page */
+    #second-page {
+      background-color: #1e1e1e;
+    }
+
+    /* Navigation styling (optional, subtle) */
+    .nav-dot {
+      position: fixed;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 1000;
+    }
+
+    .nav-dot a {
+      display: block;
+      width: 10px;
+      height: 10px;
+      background-color: #d3c9b8;
+      border-radius: 50%;
+      margin: 10px 0;
+      opacity: 0.5;
+      transition: opacity 0.3s ease;
+    }
+
+    .nav-dot a:hover,
+    .nav-dot a.active {
+      opacity: 1;
     }
 
     /* Mobile responsiveness */
-    @media (max-width: 600px) {
-      .typewriter-text {
-        font-size: 16px;
+    @media (max-width: 768px) {
+      .page-image {
+        max-width: 90%;
+      }
+
+      .nav-dot {
+        right: 10px;
+      }
+
+      .nav-dot a {
+        width: 8px;
+        height: 8px;
       }
     }
   </style>
 </head>
 <body>
-  <!-- CRT-like overlay -->
-  <div class="crt-overlay"></div>
+  <!-- Parchment texture overlay -->
+  <div class="parchment-overlay"></div>
 
-  <!-- First page with hero image and typewriter text -->
-  <div class="first-page">
-    <div class="typewriter-text">
-      <span id="typewriter"></span><span class="cursor"></span>
-    </div>
-    <picture>
-      <source media="(min-width: 1024px)" srcset="images/starpointdekstop.png">
-      <img src="images/spookystarpointgif.gif" alt="Spooky Star Pointing" class="hero-image">
-    </picture>
+  <!-- Navigation dots -->
+  <div class="nav-dot">
+    <a href="#first-page" class="active"></a>
+    <a href="#second-page"></a>
   </div>
 
+  <!-- First page -->
+  <section id="first-page" class="page-section">
+    <img src="images/spookymcgeearch.png" alt="Spooky McGee Archive" class="page-image">
+  </section>
+
+  <!-- Second page -->
+  <section id="second-page" class="page-section">
+    <img src="images/shadowandmaps.png" alt="Shadow and Maps" class="page-image">
+  </section>
+
   <script>
-    // Typewriter effect
-    const text = "You're not supposed to be here...";
-    const typewriterElement = document.getElementById('typewriter');
-    let index = 0;
+    // Smooth scrolling for navigation dots
+    document.querySelectorAll('.nav-dot a').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+        document.querySelectorAll('.nav-dot a').forEach(a => a.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
 
-    function type() {
-      if (index < text.length) {
-        typewriterElement.textContent += text.charAt(index);
-        index++;
-        setTimeout(type, 100); // Adjust speed (100ms per character)
-      }
-    }
+    // Update active dot on scroll
+    window.addEventListener('scroll', () => {
+      const sections = document.querySelectorAll('.page-section');
+      const navLinks = document.querySelectorAll('.nav-dot a');
 
-    // Start typewriter effect on page load
-    window.onload = function() {
-      type();
-    };
+      sections.forEach((section, index) => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top >= 0 && rect.top < window.innerHeight / 2) {
+          navLinks.forEach(link => link.classList.remove('active'));
+          navLinks[index].classList.add('active');
+        }
+      });
+    });
   </script>
 </body>
 </html>
