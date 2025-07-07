@@ -63,12 +63,16 @@
     }
 
     .fade-text {
-      font-family: 'IM Fell English SC', serif;
-      font-size: clamp(1.2rem, 3vw, 2rem);
-      animation: fadeBlur 12s ease-in-out infinite;
-      color: #e5e0da;
-      text-shadow: 0 0 4px rgba(0, 0, 0, 0.6);
-    }
+  font-family: 'IM Fell English SC', serif;
+  font-size: 2rem;
+  color: #fefefe;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 1.5s ease-in-out;
+  pointer-events: none;
+  user-select: none;
+}
+
 
     @keyframes fadeBlur {
       0%   { opacity: 0; filter: blur(4px); }
@@ -142,7 +146,8 @@
 
   <!-- Overlayed content -->
   <div class="content">
-    <div class="fade-text">I am, Spooky McGee</div>
+    <div class="fade-text" id="fadeText"></div>
+
 
    <div class="nav-links">
   <a href="/spooky.html">the tophat</a>
@@ -152,6 +157,39 @@
   <a href="/irl.html">the history</a>
   <a href="https://ravensimmortal.com" target="_blank" rel="noopener">the king of broken hearts</a>
 </div>
+<script>
+  const lines = [
+    "You're not supposed to be here...",
+    "The echo must have brought you...",
+    "Please, sit, have some tea...",
+    "I am...",
+    "Spooky McGee"
+  ];
+
+  const fadeText = document.getElementById("fadeText");
+  let index = 0;
+
+  function showNextLine() {
+    // Set text and fade in
+    fadeText.textContent = lines[index];
+    fadeText.style.opacity = 1;
+
+    // Stay visible for 3 seconds, then fade out
+    setTimeout(() => {
+      fadeText.style.opacity = 0;
+
+      // After fade-out finishes, move to next line
+      setTimeout(() => {
+        index = (index + 1) % lines.length;
+        showNextLine();
+      }, 1500); // Fade-out duration
+    }, 3000); // Time the line is visible
+  }
+
+  // Start the loop
+  showNextLine();
+</script>
+
 
 </body>
 </html>
