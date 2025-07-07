@@ -24,58 +24,81 @@
 
     /* Section wrapper */
     .section {
-      position: relative;
-      min-height: 100vh;
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 4rem 2rem;
-    }
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  text-align: left;
+}
+
 
     /* Text container */
-    .text-box {
-      background: rgba(0, 0, 0, 0.65);
-      padding: 2rem;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      max-width: 800px;
-      font-size: 1.25rem;
-      line-height: 1.8;
-      backdrop-filter: blur(4px);
-      text-shadow: 0 0 4px rgba(0, 0, 0, 0.6);
-    }
+.text-box {
+  background: rgba(0, 0, 0, 0.65);
+  padding: 2.5rem 3rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  max-width: 800px;
+  font-size: 1.25rem;
+  line-height: 1.8;
+  backdrop-filter: blur(4px);
+  text-shadow: 0 0 4px rgba(0, 0, 0, 0.6);
+  margin: 2rem auto;
+  border-radius: 8px;
+}
+    
 
-    .text-box em {
-      font-family: 'IM Fell English SC', serif;
-      font-style: normal;
-      font-size: 1.5rem;
-      color: #fffbe6;
-    }
+
+  .text-box em {
+  font-family: 'IM Fell English SC', serif;
+  font-style: normal;
+  font-size: 1.5rem;
+  color: #fffbe6;
+  display: inline; /* <-- add this */
+}
+
 
     .text-box strong {
-      display: block;
-      margin-top: 1rem;
-      font-weight: 600;
-      font-size: 1.3rem;
-      color: #f6e6c1;
-    }
+  font-weight: 600;
+  font-size: 1.3rem;
+  color: #f6e6c1;
+  display: inline; /* <-- change this */
+}
+
+    
 
     @media (max-width: 600px) {
       .text-box {
         font-size: 1rem;
         padding: 1.5rem;
       }
+      
     }
+    @media (max-width: 600px) {
+  .text-box {
+    font-size: 1rem;
+    padding: 1.5rem;
+  }
+}
+
 
     /* Background image defaults (mobile) */
     .section-1 {
-      background-image: url('images/tophat/shadowandmaps.png');
+      background-image: url('images/tophat/shadowandmaps-mobile.png');
     }
 
     .section-2 {
-      background-image: url('images/tophat/another-image.png');
+      background-image: url('images/tophat/home-mobile.png');
+    }
+    .section-3{
+        background-image: url( 'images/tophat/bow-mobile.png');
+    }
+    .section-4 {
+      background-image: url('images/tophat/lovers-mobile.png');
     }
 
     /* Desktop background overrides */
@@ -85,7 +108,13 @@
       }
 
       .section-2 {
-        background-image: url('images/tophat/another-image.png');
+        background-image: url('images/tophat/home-desktop.png');
+      }
+      .section-3 {
+        background-image: url('images/tophat/bow-desktop.png');
+      }
+      .section-4 {
+        background-image: url('images/tophat/lovers-desktop.png');
       }
     }
   </style>
@@ -93,20 +122,86 @@
 <body>
 
   <!-- Section 1 -->
-  <div class="section section-1">
-    <div class="text-box">
-      <em>Interviewer:</em> What's your name?<br>
-      <strong>Spooky:</strong> You know, I forgot. But they call me Spooky McGee.
-    </div>
+<div class="section section-1">
+  <div class="text-box">
+    <em>Narrator:</em> So… who are you, really?<br>
+    <strong>Spooky:</strong> I’ve had names, sure. But the one that stuck was Spooky McGee.<br><br>
+
+    <em>Narrator:</em> And before that?<br>
+    <strong>Spooky:</strong> My wife owns that one now. It was a wedding gift. She keeps it in a stitched little box with all the other things she’s rescued.<br>
+    Says I can borrow it if I ever remember who I was before I met her.<br><br>
+
+    <em>Narrator:</em> Then who gave you *this* name?<br>
+    <strong>Spooky:</strong> A boy. He caught me stepping through his bathroom mirror — poor kid was just brushing his teeth.<br>
+    Called me spooky, screamed, dropped his toothbrush. I didn’t correct him. Didn’t stay long, either.<br><br>
+
+    <em>Narrator:</em> So you just kept it?<br>
+    <strong>Spooky:</strong> I liked how it felt. Light, silly, strange. A name that didn’t take itself too seriously.<br>
+    Besides, it went well with the suit. And the hat. I’ve always liked a little style in my step.<br><br>
+
+    <em>Narrator:</em> How long ago was that?<br>
+    <strong>Spooky:</strong> Hard to say. The mirror didn’t show dates — just echoes. And I’ve walked through a lot of echoes since then.
   </div>
+</div>
 
   <!-- Section 2 -->
   <div class="section section-2">
-    <div class="text-box">
-      <em>Interviewer:</em> Where were you born?<br>
-      <strong>Spooky:</strong> In a lighthouse, under a storm. Or maybe it was a carnival. Both feel true.
-    </div>
+  <div class="text-box">
+    <em>Narrator:</em> Where did you come from?<br>
+    <strong>Spooky:</strong> That’s a long walk backward, but alright.<br><br>
+
+    <strong>Spooky:</strong> I’m what they call a ragdoll. There are different kinds — button-eyed, wire-framed, bone-built. Me? I was the stitched sort.<br><br>
+    I was made at the edge of Imagination and Existence. Sewn for a child who forgot me too fast.  
+    Left in the woods like a dream that didn’t stick.<br><br>
+    One day, a giant black bird flew overhead. Raven, maybe. Or something older.  
+    It dropped a soul it was carrying — and that soul landed on me.<br><br>
+    I blinked. First breath, first fear. And not long after, I willed myself into something *safer*. Something that could walk and speak and wear a hat.<br><br>
+    I still keep a home there. Little place tucked between birch trees and fog. Magical attic. Talking pallas cat. Smells like cinnamon and thunder.
   </div>
+</div>
+
+<!-- Section 3 -->
+ <div class="section section-3">
+  <div class="text-box">
+    <em>Narrator:</em> Have you ever left home?<br><br>
+
+<strong>Spooky:</strong> Once. Maybe more. But the first time... it was a carnival on the coast.  
+White sand, grass growing sideways into the beach. A lighthouse standing crooked behind it all like it was holding its breath.<br><br>
+
+I lived inside that lighthouse. Survived, really. The ringmaster who ran the place — cruel man. Treated us like we were props, not people.  
+I wasn't much back then. Just naive, yet adventure lived in my heart. But I knew wrong when I saw it.<br><br>
+
+One night, I stood up to him. Broke the spell. Broke *him*. Took his top hat after. Not out of pride — but to remember the kind of man I’d never become.<br><br>
+
+The suit? That was part of the job. All performers wore one. But I liked how it felt — neat, sharp, put-together.  
+When your soul’s barely holding, sometimes a well-pressed coat is the only thing keeping you from unraveling.<br><br>
+
+    <em>Narrator:</em> Is that where your story started?<br><br>
+    <strong>Spooky:</strong> It’s where I *chose* to become a story.  From there, I got swept into a mercenary band. Run by Evalyn Stockdale — sharp as glass, fast as myth.  
+    She wore flame-red coats and didn’t believe in rest. I followed her into wars I didn’t understand, just to be near the heat.<br>
+
+     She was my first heartbreak. Not because she left… but because she didn’t look back.<br><br>
+
+    <em>Narrator:</em> What came after that?<br>
+    <strong>Spooky:</strong> After Nona sewed my heart back in? For a while, I served the High Spirits. A stitched outsider guarding royalty — Sara, Damien, all of them.  
+    They never said I belonged, but they trusted me with what mattered.<br>
+
+     Eventually, I left. Not out of anger. Just… when you’ve stood between gods and ghosts long enough,  
+    you start wanting something smaller. A shop. A child. A little quiet.  
+    So I went freelance. Still do, in a way.
+  </div>
+</div>
+<!-- Section 4 -->
+ <div class="section section-4">
+  <div class="text-box">
+    <em>Narrator:</em> Stitched your heart?<br>
+    <strong>Spooky:</strong> Yes. After Evalyn, I was a mess. Heart torn out, soul frayed.<br>
+    <em>Narrator:</em> And Nona?<br>
+    <strong>Spooky:</strong> Yeah. Nona worked her magic, and suddenly I felt whole again. It was like being given a second chance — not just to exist, but to *live*.<br>
+    <em>Narrator:</em> Did that change you?<br>
+    <strong>Spooky:</strong> It did. I learned to love again, to trust. Nona taught me that even the most broken things can be stitched back together.<br>
+    <em>Narrator:</em> And your child together?<br>
+    <strong>Spooky:</strong> Our child? Oh, that’s a story for another time. But let’s just say, they’re a stitch of both our souls —
 
   <!-- Keep duplicating these sections with new classes and image paths -->
 
