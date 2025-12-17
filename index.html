@@ -2,199 +2,105 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>The Original Spooky McGee</title>
-  <link rel="canonical" href="https://spookymcgee.com/" />
-
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=IM+Fell+English+SC&display=swap" rel="stylesheet">
-
-  <meta name="description" content="Enter the stitched mythos of Spooky McGee – a surreal cosmic ragdoll wandering time, memory, and heartbreak.">
-<meta name="keywords" content="Spooky McGee, cosmic ragdoll, surreal lore, Ravens Immortal, stitched character, fae, top hat, echo">
-<meta name="author" content="Sean Netherlain">
+  <title>Coming Soon</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <style>
-    /* Reset */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
     html, body {
       height: 100%;
-      width: 100%;
-      overflow: hidden;
-      font-family: 'Cormorant Garamond', serif;
+      margin: 0;
+      background: #ffffff;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
 
-    body {
-      position: relative;
-    }
-
-    /* Background image fills the entire screen */
-    .background {
-      position: fixed;
-      top: 0;
-      left: 0;
+    .wrapper {
       height: 100%;
-      width: 100%;
-      background: url('images/spookymcgeearch-mobile.png') no-repeat center center;
-      background-size: cover;
-      z-index: -1;
-    }
-
-    /* Switch to desktop image when screen is wide enough */
-    @media (min-width: 768px) {
-      .background {
-        background-image: url('images/spookymcgeearch-desktop.png');
-      }
-    }
-
-    /* Overlay content */
-    .content {
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 100%;
-      width: 100%;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
       align-items: center;
+      justify-content: center;
       text-align: center;
-      padding: 2rem;
-      color: #e0dcd4;
     }
 
-    .fade-text {
-  font-family: 'IM Fell English SC', serif;
-  font-size: 2rem;
-  color: #fefefe;
-  text-align: center;
-  opacity: 0;
-  transition: opacity 1.5s ease-in-out;
-  pointer-events: none;
-  user-select: none;
+    .logo {
+      max-width: 320px;
+      width: 80%;
+      height: auto;
+      margin-bottom: 20px;
+    }
+
+    .coming-soon {
+      font-size: 14px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #555;
+    }
+    .glitch-wrapper {
+  position: relative;
 }
 
+.glitch {
+  position: relative;
+  animation: glitch 3.5s infinite;
+}
 
-    @keyframes fadeBlur {
-      0%   { opacity: 0; filter: blur(4px); }
-      20%  { opacity: 1; filter: blur(0px); }
-      50%  { opacity: 1; filter: blur(1px); }
-      80%  { opacity: 0; filter: blur(6px); }
-      100% { opacity: 0; filter: blur(6px); }
-    }
-
-    .nav-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
-      justify-content: center;
-      margin-bottom: 1rem;
-    }
-
-    .nav-links a {
-      font-size: 1.25rem;
-      font-family: 'Cormorant Garamond', serif;
-      color: #ccc;
-      text-decoration: none;
-      position: relative;
-      transition: color 0.4s ease;
-      text-shadow: 0 0 4px rgba(0, 0, 0, 0.7);
-    }
-
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      bottom: -2px;
-      width: 100%;
-      height: 1px;
-      background: rgba(255, 255, 255, 0.3);
-      transform: scaleX(0);
-      transform-origin: right;
-      transition: transform 0.4s ease;
-    }
-
-    .nav-links a:hover {
-      color: #ffffff;
-    }
-
-    .nav-links a:hover::after {
-      transform: scaleX(1);
-      transform-origin: left;
-    }
-    /* Static overlay for the background */
-    .static-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  width: 100vw;
-  background: url('images/dustgif2.gif') repeat;
-  background-size: cover;
-  opacity: 0.06;
+/* Color channel ghosts */
+.glitch::before,
+.glitch::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("Logo Text Site front page.png") no-repeat center;
+  background-size: contain;
+  opacity: 0.8;
   pointer-events: none;
-  z-index: 0;
+}
+
+.glitch::before {
+  transform: translate(-2px, 0);
+  filter: hue-rotate(20deg);
+}
+
+.glitch::after {
+  transform: translate(2px, 0);
+  filter: hue-rotate(-20deg);
+}
+
+@keyframes glitch {
+  0%, 92%, 100% {
+    transform: translate(0);
+    filter: none;
+  }
+
+  93% {
+    transform: translate(-1px, 1px);
+  }
+
+  94% {
+    transform: translate(2px, -1px);
+  }
+
+  95% {
+    transform: translate(-2px, 0);
+  }
+
+  96% {
+    transform: translate(0);
+  }
 }
 
   </style>
 </head>
 <body>
-<!-- Static-->
-<div class="static-overlay"></div>
 
-  <!-- Background -->
-  <div class="background"></div>
-
-  <!-- Overlayed content -->
-  <div class="content">
-    <div class="fade-text" id="fadeText"></div>
-
-
-   <div class="nav-links">
-  <a href="/tophat.html">the tophat</a>
-  <a href="/themoth.html">the moth</a>
-  <a href="/thefae.html">the fae</a>
-  <a href="/theecho.html">the echo</a>
-  <a href="/thehistory.html">the history</a>
-  <a href="https://ravensimmortal.com" target="_blank" rel="noopener">the king of broken hearts</a>
-</div>
-<script>
-  const lines = [
-    "You're not supposed to be here...",
-    "The echo must have brought you...",
-    "Please, sit, have some tea...",
-    "I am...",
-    "Spooky McGee"
-  ];
-
-  const fadeText = document.getElementById("fadeText");
-  let index = 0;
-
-  function showNextLine() {
-    // Set text and fade in
-    fadeText.textContent = lines[index];
-    fadeText.style.opacity = 1;
-
-    // Stay visible for 3 seconds, then fade out
-    setTimeout(() => {
-      fadeText.style.opacity = 0;
-
-      // After fade-out finishes, move to next line
-      setTimeout(() => {
-        index = (index + 1) % lines.length;
-        showNextLine();
-      }, 1500); // Fade-out duration
-    }, 3000); // Time the line is visible
-  }
-
-  // Start the loop
-  showNextLine();
-</script>
-
+  <div class="wrapper">
+    <img 
+      src="images/Logo/Logo Text Site front page.png" 
+      alt="Site Logo" 
+      class="logo glitch"
+    />
+    <div class="coming-soon">Coming Soon</div>
+  </div>
 
 </body>
 </html>
