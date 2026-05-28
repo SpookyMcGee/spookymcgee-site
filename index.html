@@ -1,106 +1,521 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Spooky McGee</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sp00kyMcGee</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
 
-  <style>
-    html, body {
-      height: 100%;
-      margin: 0;
-      background: #ffffff;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    .wrapper {
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-    }
-
-    .logo {
-      max-width: 800px;
-      width: 100%;
-      height: auto;
-      margin-bottom: 20px;
-    }
-
-    .coming-soon {
-      font-size: 14px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: #555;
-    }
-    .glitch-wrapper {
-  position: relative;
-}
-
-.glitch {
-  position: relative;
-  animation: glitch 3.5s infinite;
-}
-
-/* Color channel ghosts */
-.glitch::before,
-.glitch::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: url("Logo Text Site front page.png") no-repeat center;
-  background-size: contain;
-  opacity: 0.8;
-  pointer-events: none;
-}
-
-.glitch::before {
-  transform: translate(-2px, 0);
-  filter: hue-rotate(20deg);
-}
-
-.glitch::after {
-  transform: translate(2px, 0);
-  filter: hue-rotate(-20deg);
-}
-
-@keyframes glitch {
-  0%, 92%, 100% {
-    transform: translate(0);
-    filter: none;
+  :root {
+    --green: #00ff41;
+    --green-dim: #00cc33;
+    --green-dark: #003d0f;
+    --bg: #0a0a0a;
+    --fg: #00ff41;
+    --amber: #ffb000;
+    --red: #ff3333;
+    --gray: #4a4a4a;
+    --mono: 'Share Tech Mono', 'Courier New', monospace;
   }
 
-  93% {
-    transform: translate(-1px, 1px);
+  html, body {
+    width: 100%; height: 100%;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--mono);
+    font-size: 14px;
+    line-height: 1.5;
+    overflow: hidden;
   }
 
-  94% {
-    transform: translate(2px, -1px);
+  #scanlines {
+    position: fixed; inset: 0; pointer-events: none; z-index: 999;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0,0,0,0.15) 2px,
+      rgba(0,0,0,0.15) 4px
+    );
   }
 
-  95% {
-    transform: translate(-2px, 0);
+  #crt-flicker {
+    position: fixed; inset: 0; pointer-events: none; z-index: 998;
+    border-radius: 8px;
+    box-shadow: inset 0 0 120px rgba(0,0,0,0.6), inset 0 0 40px rgba(0,255,65,0.04);
+    animation: flicker 8s infinite;
   }
 
-  96% {
-    transform: translate(0);
+  @keyframes flicker {
+    0%,100%{opacity:1} 92%{opacity:1} 93%{opacity:0.97} 94%{opacity:1} 96%{opacity:0.98} 97%{opacity:1}
   }
-}
 
-  </style>
+  /* ===== LOGIN SCREEN ===== */
+  #login-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    padding: 2rem;
+    animation: fadeIn 0.4s ease;
+  }
+
+  @keyframes fadeIn { from{opacity:0} to{opacity:1} }
+
+  .logo-ascii {
+    color: var(--green);
+    font-size: 12px;
+    line-height: 1.2;
+    text-align: center;
+    margin-bottom: 2.5rem;
+    text-shadow: 0 0 8px rgba(0,255,65,0.6);
+    white-space: pre;
+  }
+
+  .login-box {
+    width: 100%;
+    max-width: 520px;
+    border: 1px solid var(--green-dim);
+    padding: 2rem;
+    background: rgba(0,255,65,0.02);
+    box-shadow: 0 0 30px rgba(0,255,65,0.1), inset 0 0 20px rgba(0,255,65,0.02);
+  }
+
+  .login-title {
+    color: var(--green);
+    font-size: 11px;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--green-dark);
+    padding-bottom: 0.75rem;
+  }
+
+  .field-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    gap: 0;
+  }
+
+  .field-label {
+    color: var(--green-dim);
+    min-width: 110px;
+    font-size: 13px;
+    flex-shrink: 0;
+  }
+
+  .field-value {
+    color: var(--green);
+    font-size: 13px;
+    font-family: var(--mono);
+    flex: 1;
+    letter-spacing: 0.05em;
+  }
+
+  .cursor-blink {
+    display: inline-block;
+    width: 8px;
+    height: 14px;
+    background: var(--green);
+    vertical-align: middle;
+    margin-left: 1px;
+    animation: blink 1s step-end infinite;
+  }
+
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+  .status-line {
+    margin-top: 1.5rem;
+    font-size: 11px;
+    color: var(--green-dim);
+    letter-spacing: 0.05em;
+  }
+
+  .auth-bar {
+    margin-top: 1rem;
+    height: 4px;
+    background: var(--green-dark);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .auth-bar-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--green);
+    box-shadow: 0 0 8px var(--green);
+    transition: width 0.05s linear;
+  }
+
+  /* ===== TERMINAL SCREEN ===== */
+  #terminal-screen {
+    display: none;
+    flex-direction: column;
+    height: 100vh;
+    padding: 0;
+    animation: fadeIn 0.5s ease;
+  }
+
+  .term-bar {
+    background: rgba(0,255,65,0.06);
+    border-bottom: 1px solid var(--green-dark);
+    padding: 6px 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 11px;
+    color: var(--green-dim);
+    flex-shrink: 0;
+  }
+
+  .term-bar .hostname { color: var(--green); }
+
+  .term-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1.2rem 1.4rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .term-body::-webkit-scrollbar { width: 4px; }
+  .term-body::-webkit-scrollbar-track { background: transparent; }
+  .term-body::-webkit-scrollbar-thumb { background: var(--green-dark); }
+
+  .line {
+    margin-bottom: 0.2rem;
+    font-size: 13px;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    word-break: break-all;
+  }
+
+  .line.prompt { color: var(--green); }
+  .line.comment { color: var(--gray); }
+  .line.header { color: var(--green); font-size: 12px; letter-spacing: 0.12em; }
+  .line.amber { color: var(--amber); }
+  .line.red { color: var(--red); }
+  .line.dim { color: var(--green-dim); font-size: 12px; }
+  .line.gap { margin-bottom: 0.8rem; }
+  .line.big {
+    color: var(--green);
+    font-size: 11px;
+    white-space: pre;
+    text-shadow: 0 0 6px rgba(0,255,65,0.4);
+    line-height: 1.15;
+  }
+
+  .progress-row {
+    display: flex; align-items: center; gap: 12px; margin: 2px 0;
+  }
+  .progress-label { color: var(--green-dim); font-size: 12px; min-width: 160px; }
+  .progress-bar { height: 8px; background: var(--green-dark); flex: 1; position: relative; }
+  .progress-fill {
+    height: 100%;
+    background: var(--green);
+    box-shadow: 0 0 6px var(--green);
+  }
+  .progress-pct { font-size: 12px; color: var(--green); min-width: 36px; text-align: right; }
+
+  .item-row {
+    display: flex; align-items: baseline; gap: 8px;
+    padding: 4px 0;
+    border-bottom: 1px solid rgba(0,255,65,0.06);
+  }
+  .item-row:last-child { border-bottom: none; }
+  .item-tag {
+    color: var(--bg);
+    background: var(--green);
+    font-size: 10px;
+    padding: 1px 6px;
+    letter-spacing: 0.08em;
+    flex-shrink: 0;
+  }
+  .item-name { color: var(--green); font-size: 13px; flex: 1; }
+  .item-status { font-size: 11px; color: var(--amber); }
+
+  .blink-cursor {
+    display: inline-block; width: 8px; height: 14px;
+    background: var(--green); vertical-align: middle;
+    animation: blink 1s step-end infinite;
+  }
+
+  .notify-box {
+    border: 1px solid var(--amber);
+    padding: 0.8rem 1rem;
+    margin: 1rem 0;
+    background: rgba(255,176,0,0.04);
+    font-size: 12px;
+    color: var(--amber);
+    line-height: 1.7;
+  }
+</style>
 </head>
 <body>
 
-  <div class="wrapper">
-    <img 
-      src="images/frontpageplaceholder.png"
-      alt="Site Logo" 
-      class="logo glitch"
-    />
-    <div class="coming-soon"></div>
-  </div>
+<div id="scanlines"></div>
+<div id="crt-flicker"></div>
 
+<!-- LOGIN SCREEN -->
+<div id="login-screen">
+  <pre class="logo-ascii">
+ ___  ___  ___  ___  ___  _ _  __  __  __  ___  ___  ___
+/ __>| . \| . \| . \| . || / ||  \/  |/ _]| __>| __>| __>
+\__ \|  _/|   /|   /`   <`  ' || |\/| | [_ | _> | _> | _>
+&lt;___/|_|  |_\_\|_\_\ \___|\_/ |_|  |_|\___||___>|___>|___>
+</pre>
+
+  <div class="login-box">
+    <div class="login-title">◈ spookymcgee.com — authentication required</div>
+
+    <div class="field-row">
+      <span class="field-label">login:</span>
+      <span class="field-value" id="username-field"><span class="cursor-blink" id="login-cursor"></span></span>
+    </div>
+
+    <div class="field-row">
+      <span class="field-label">password:</span>
+      <span class="field-value" id="password-field"></span>
+    </div>
+
+    <div class="status-line" id="status-line">waiting for input...</div>
+
+    <div class="auth-bar">
+      <div class="auth-bar-fill" id="auth-bar-fill"></div>
+    </div>
+  </div>
+</div>
+
+<!-- TERMINAL SCREEN -->
+<div id="terminal-screen">
+  <div class="term-bar">
+    <span>▪ ▪ ▪</span>
+    <span class="hostname">sp00kymcgee@localhost</span>
+    <span>~</span>
+    <span style="margin-left:auto">tty1 — bash 5.2.21</span>
+  </div>
+  <div class="term-body" id="term-body"></div>
+</div>
+
+<script>
+const $ = id => document.getElementById(id);
+
+// ─── LOGIN SEQUENCE ───────────────────────────────────────────────────────────
+const USERNAME = 'Sp00kyMcGee';
+const PASSWORD_LEN = 14;
+const PASSWORD_MASK = '*'.repeat(PASSWORD_LEN);
+
+let loginPhase = 'username';
+let usernameTyped = '';
+let passwordTyped = '';
+
+function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+async function typeUsername() {
+  const field = $('username-field');
+  const cursor = $('login-cursor');
+  for (let i = 0; i < USERNAME.length; i++) {
+    usernameTyped += USERNAME[i];
+    field.innerHTML = usernameTyped + '<span class="cursor-blink" id="login-cursor"></span>';
+    await sleep(80 + Math.random() * 60);
+  }
+  await sleep(400);
+  // remove cursor from username, start password
+  field.innerHTML = usernameTyped;
+  loginPhase = 'password';
+  $('status-line').textContent = 'authenticating...';
+  await typePassword();
+}
+
+async function typePassword() {
+  const field = $('password-field');
+  for (let i = 0; i < PASSWORD_LEN; i++) {
+    passwordTyped += '*';
+    field.innerHTML = passwordTyped + '<span class="cursor-blink"></span>';
+    await sleep(60 + Math.random() * 50);
+  }
+  await sleep(300);
+  field.innerHTML = PASSWORD_MASK;
+  $('status-line').textContent = 'verifying credentials...';
+  await runAuthBar();
+}
+
+async function runAuthBar() {
+  const bar = $('auth-bar-fill');
+  const status = $('status-line');
+  let w = 0;
+  const msgs = [
+    [20, 'checking identity...'],
+    [55, 'loading ghost protocols...'],
+    [80, 'summoning Sp00kyMcGee...'],
+    [100, 'access granted.'],
+  ];
+  while (w < 100) {
+    w = Math.min(w + (Math.random() * 3 + 1), 100);
+    bar.style.width = w + '%';
+    const msg = msgs.findLast(m => w >= m[0]);
+    if (msg) status.textContent = msg[1];
+    await sleep(30);
+  }
+  await sleep(600);
+  $('status-line').style.color = 'var(--green)';
+  $('status-line').textContent = '✓ welcome back, Sp00kyMcGee.';
+  await sleep(900);
+  transitionToTerminal();
+}
+
+async function transitionToTerminal() {
+  $('login-screen').style.opacity = '0';
+  $('login-screen').style.transition = 'opacity 0.4s';
+  await sleep(400);
+  $('login-screen').style.display = 'none';
+  $('terminal-screen').style.display = 'flex';
+  await sleep(100);
+  runTerminal();
+}
+
+// ─── TERMINAL OUTPUT ──────────────────────────────────────────────────────────
+const termBody = $('term-body');
+
+function addLine(text = '', cls = '') {
+  const div = document.createElement('div');
+  div.className = 'line' + (cls ? ' ' + cls : '');
+  div.innerHTML = text;
+  termBody.appendChild(div);
+  termBody.scrollTop = termBody.scrollHeight;
+  return div;
+}
+
+async function typeLine(text, cls = '', delay = 18) {
+  const div = addLine('', cls);
+  for (let i = 0; i < text.length; i++) {
+    div.innerHTML = text.slice(0, i + 1);
+    termBody.scrollTop = termBody.scrollHeight;
+    await sleep(delay + Math.random() * 8);
+  }
+  return div;
+}
+
+async function runTerminal() {
+  await sleep(200);
+
+  addLine('Last login: Thu May 28 00:00:01 2026 from 192.168.1.1', 'comment');
+  addLine('');
+  await sleep(300);
+
+  await typeLine('$ cat /etc/motd', 'prompt', 14);
+  await sleep(200);
+
+  addLine('');
+  addLine(' ___  ___  ___  ___  _ _  __  __  __  ___  ___  ___', 'big');
+  addLine('/ __>| . \| . \| . || / ||  \\/  |/ _]| __>| __>| __>', 'big');
+  addLine('\\__ \\|  _/|   /`   <`  \' || |\\/| | [_ | _> | _> | _>', 'big');
+  addLine('<___/|_|  |_\\_\\ \\___|\\/ |_|  |_|\\___||___>|___>|___>', 'big');
+  addLine('');
+  addLine('                 — merch dropping soon —', 'dim');
+  addLine('');
+
+  await sleep(400);
+  await typeLine('$ ls -la ./store/', 'prompt', 14);
+  await sleep(200);
+
+  addLine('total 0', 'comment');
+  addLine('drwxr-xr-x  Sp00kyMcGee  staff   ./');
+  addLine('drwxr-xr-x  Sp00kyMcGee  staff   ../');
+
+  const items = [
+    { tag: 'COMING SOON', name: 'shirts/', status: '0% stocked', color: 'amber' },
+    { tag: 'COMING SOON', name: 'hoodies/', status: '0% stocked', color: 'amber' },
+    { tag: 'COMING SOON', name: 'stickers/', status: '0% stocked', color: 'amber' },
+    { tag: 'COMING SOON', name: 'prints/', status: '0% stocked', color: 'amber' },
+    { tag: 'COMING SOON', name: 'patches/', status: '0% stocked', color: 'amber' },
+    { tag: 'COMING SOON', name: 'accessories/', status: '0% stocked', color: 'amber' },
+  ];
+
+  for (const item of items) {
+    await sleep(80);
+    const row = document.createElement('div');
+    row.className = 'item-row';
+    row.innerHTML = `
+      <span class="item-tag">${item.tag}</span>
+      <span class="item-name">${item.name}</span>
+      <span class="item-status">${item.status}</span>
+    `;
+    termBody.appendChild(row);
+    termBody.scrollTop = termBody.scrollHeight;
+  }
+
+  addLine('');
+  await sleep(400);
+
+  await typeLine('$ cat status.log', 'prompt', 14);
+  await sleep(200);
+  addLine('');
+
+  const notif = document.createElement('div');
+  notif.className = 'notify-box';
+  notif.innerHTML = `
+    ⚠ SYSTEM NOTICE<br>
+    ───────────────────────────────────────────────<br>
+    The Sp00kyMcGee merch store is currently under construction.<br>
+    Ghosts are hard at work. Shirts, hoodies, stickers, &amp; more<br>
+    are being summoned from the void.<br>
+    <br>
+    Follow &amp; stay tuned — the store opens soon.
+  `;
+  termBody.appendChild(notif);
+  termBody.scrollTop = termBody.scrollHeight;
+
+  addLine('');
+  await sleep(400);
+
+  await typeLine('$ ./inventory --progress', 'prompt', 14);
+  await sleep(200);
+  addLine('');
+  addLine('Inventory build status:', 'dim');
+  addLine('');
+
+  const bars = [
+    { label: 'graphic tees', pct: 72 },
+    { label: 'hoodies', pct: 48 },
+    { label: 'sticker packs', pct: 91 },
+    { label: 'art prints', pct: 35 },
+    { label: 'enamel patches', pct: 20 },
+    { label: 'launch readiness', pct: 58 },
+  ];
+
+  for (const b of bars) {
+    await sleep(120);
+    const row = document.createElement('div');
+    row.className = 'progress-row';
+    row.innerHTML = `
+      <span class="progress-label">${b.label}</span>
+      <div class="progress-bar"><div class="progress-fill" style="width:${b.pct}%"></div></div>
+      <span class="progress-pct">${b.pct}%</span>
+    `;
+    termBody.appendChild(row);
+    termBody.scrollTop = termBody.scrollHeight;
+  }
+
+  addLine('');
+  await sleep(500);
+  await typeLine('$ _', 'prompt', 14);
+  await sleep(200);
+
+  // blinking cursor at the end
+  const finalLine = addLine('', 'prompt');
+  finalLine.innerHTML = '$ <span class="blink-cursor"></span>';
+}
+
+// ─── BOOT ─────────────────────────────────────────────────────────────────────
+window.addEventListener('DOMContentLoaded', () => {
+  setTimeout(() => typeUsername(), 800);
+});
+</script>
 </body>
 </html>
